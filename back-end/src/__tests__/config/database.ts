@@ -1,11 +1,13 @@
 import mongoose from "mongoose";
-import { MongoMemoryServer } from "mongodb-memory-server";
 
-let mongoServer: MongoMemoryServer;
+const {
+    MONGO_CONNECTION_STRING,
+} = process.env;
+
 
 export const connect = async () => {
-    mongoServer = await MongoMemoryServer.create();
-    await mongoose.connect(mongoServer.getUri(), {
+    await mongoose.connect(MONGO_CONNECTION_STRING ?? "", {
+        dbName: "test_database",
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useCreateIndex: true,
@@ -18,7 +20,6 @@ export const connect = async () => {
 export const close = async () => {
     await mongoose.connection.dropDatabase();
     await mongoose.connection.close();
-    await mongoServer.stop();
 };
 
 export const clear = async () => {

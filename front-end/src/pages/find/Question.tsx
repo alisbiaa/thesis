@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {ArchiveFill, BookmarkCheckFill, FlagFill} from "react-bootstrap-icons";
 import {IQuestion, IResponse, ISubject, ITeacher} from "../../utils/interfaces";
 import {Card} from "react-bootstrap";
-import {question_get_one, subject_get_one, teacher_get_one} from "../../utils/apis";
 import {Link} from "react-router-dom";
+import {question_get_one} from "../../api/question.api";
+import {subject_get_one} from "../../api/subject.api";
 
 type propTypes = {
     id: string;
@@ -23,12 +24,12 @@ const Question = ({id}:propTypes) => {
     }
 
     const fetchUser = async () => {
-        if(!question) return;
-        const {status,data,message,success,error} : IResponse = await teacher_get_one(question.user);
-        if(success)
-            setUser(data);
-        else
-            alert(message);
+        // if(!question) return;
+        // const {status,data,message,success,error} : IResponse = await teacher_get_one(question.user);
+        // if(success)
+        //     setUser(data);
+        // else
+        //     alert(message);
     }
 
     const fetchSubject = async () => {

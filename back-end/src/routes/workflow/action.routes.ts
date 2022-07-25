@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {ban} from "../controllers/action.controller";
+import {ban} from "../../controllers/action.controller";
 
 const router = Router();
 

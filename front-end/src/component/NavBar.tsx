@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {IDepartment, IResponse} from "../utils/interfaces";
-import {department_get_all} from "../utils/apis";
+import {department_get_all} from "../api/department.api";
 
 
 const NavBar = () => {

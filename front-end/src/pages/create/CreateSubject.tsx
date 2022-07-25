@@ -2,8 +2,9 @@ import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
 import {Col, Row} from "react-bootstrap";
 import {IResponse, ITeacher} from "../../utils/interfaces";
-import {department_get_all, subject_create} from "../../utils/apis";
 import {useNavigate} from "react-router-dom";
+import {department_get_all} from "../../api/department.api";
+import {subject_create} from "../../api/subject.api";
 
 const CreateSubject = () => {
     const navigate = useNavigate();

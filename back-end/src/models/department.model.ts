@@ -5,15 +5,6 @@ export interface IDepartment {
     description: string;
 }
 
-// interface IStructre {
-//     mission: string;
-//     description: string;
-//
-// }
-//
-// const structure = new Schema<IStructre>({
-//
-// });
 
 const schema = new Schema<IDepartment>({
     name : {type : String, required : true, unique: true},

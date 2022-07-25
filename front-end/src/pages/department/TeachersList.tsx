@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {IResponse, ITeacher} from "../../utils/interfaces";
-import {teacher_get_all_by_department} from "../../utils/apis";
 
 
 type propTypes = {
@@ -12,9 +11,9 @@ const TeachersList = ({department_id}:propTypes) => {
     useEffect(() => {
         const fetchData = async () => {
             if(!department_id) return;
-            const {status,data,message,success,error} : IResponse = await teacher_get_all_by_department(department_id);
-            if(success)
-                setTeachers(data);
+            // const {status,data,message,success,error} : IResponse = await teacher_get_all_by_department(department_id);
+            // if(success)
+            //     setTeachers(data);
         }
         fetchData();
     }, [department_id]);

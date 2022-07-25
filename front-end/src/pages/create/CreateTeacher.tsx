@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
 import {Col, Row} from "react-bootstrap";
 import {IDepartment, IResponse} from "../../utils/interfaces";
-import {teacher_create, department_get_all} from "../../utils/apis";
 import { useNavigate } from "react-router-dom";
+import {department_get_all} from "../../api/department.api";
 
 const CreateTeacher = () => {
     const navigate = useNavigate();
@@ -24,26 +24,26 @@ const CreateTeacher = () => {
     const [department_id, setDepartment_id] = useState<string>("");
 
     const handleCreate= () => {
-        const fetchData = async () => {
-            const {status,data,message,success,error} : IResponse = await teacher_create({
-                name,
-                department_id,
-                email,
-                bio,
-                last_name,
-                _id: "",
-            });
-            if(success){
-                alert(message);
-                console.log(data);
-                navigate(`/`);
-            } else {
-                alert(message);
-                console.log(error);
-            }
-
-        }
-        fetchData();
+        // const fetchData = async () => {
+        //     const {status,data,message,success,error} : IResponse = await teacher_create({
+        //         name,
+        //         department_id,
+        //         email,
+        //         bio,
+        //         last_name,
+        //         _id: "",
+        //     });
+        //     if(success){
+        //         alert(message);
+        //         console.log(data);
+        //         navigate(`/`);
+        //     } else {
+        //         alert(message);
+        //         console.log(error);
+        //     }
+        //
+        // }
+        // fetchData();
     }
 
     return (

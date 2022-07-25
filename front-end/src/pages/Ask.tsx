@@ -2,8 +2,10 @@ import React, {useEffect, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import Header from "../component/Header";
 import {IResponse, ISubject, ITeacher} from "../utils/interfaces";
-import {department_get_all, question_create, subject_create, subject_get_all} from "../utils/apis";
 import {useNavigate} from "react-router-dom";
+import {department_get_all} from "../api/department.api";
+import {subject_get_all} from "../api/subject.api";
+import {question_create} from "../api/question.api";
 
 const Ask = () => {
     const navigate = useNavigate();
@@ -44,11 +46,12 @@ const Ask = () => {
         if(!department_id || !subject_id)
             return;
         const fetchData = async () => {
-            const {status,data,message,success,error} : IResponse = await question_create({
+            const {status, data, message, success, error}: IResponse = await question_create({
                 hidden: false,
                 important: false,
                 solved: false,
-                department_id,content,user,subject_id});
+                department_id, content, user, subject_id
+            });
             if(success){
                 alert(message);
                 console.log(data);

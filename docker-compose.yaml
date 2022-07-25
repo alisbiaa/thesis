@@ -1,0 +1,61 @@
+version: "3"
+services:
+  ui:
+    build:
+      context: ./front-end
+      dockerfile: Dockerfile.dev
+    ports:
+      -  3000:3000
+    container_name: frontend
+    networks:
+      -  mern-stack-net
+    volumes:
+      -  ./front-end/src:/usr/app/src
+      -  ./front-end/public:/usr/app/public
+    depends_on:
+      - api
+    stdin_open: true
+    tty: true
+    env_file:
+      - front-end/.env
+
+  api:
+    build:
+      context: ./back-end
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5000:5000
+    container_name: backend
+    networks:
+      - mern-stack-net
+    volumes:
+      - ./back-end/src:/usr/app/src
+    depends_on:
+      - db
+    env_file:
+      - back-end/.env
+    command: >
+      sh -c "npm run test
+             npm run dev"
+
+  db:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    container_name: mongo-db
+    networks:
+      - mern-stack-net
+    volumes:
+      - mongo-data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+
+networks:
+  mern-stack-net:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local

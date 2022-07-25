@@ -1,18 +1,12 @@
 import {Router} from "express";
-import userRoutes from "./user.routes";
-import departmentRoutes from "./department.routes";
-import subjectRoutes from "./subject.routes";
-import questionRoutes from "./question.routes";
-import answerRoutes from "./answer.routes";
-import actionRoutes from "./action.routes";
+import apiRouter from "./api";
+import userRouter from "./user";
+import workflowRouter from "./workflow";
 
 const BaseRouter = Router();
 
-BaseRouter.use("/api/user/teacher", userRoutes);
-BaseRouter.use("/api/department", departmentRoutes);
-BaseRouter.use("/api/subject", subjectRoutes);
-BaseRouter.use("/api/question", questionRoutes);
-BaseRouter.use("/api/answer", answerRoutes);
-BaseRouter.use("/api/action", actionRoutes);
+BaseRouter.use("/api", apiRouter);
+BaseRouter.use("/user", userRouter);
+BaseRouter.use("/workflow", workflowRouter);
 
 export default BaseRouter;

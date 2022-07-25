@@ -5,7 +5,7 @@ import {IQuestion, IResponse} from "../../utils/interfaces";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import Question from "./Question";
-import {question_get_all, teacher_get_all} from "../../utils/apis";
+import {question_get_all} from "../../api/question.api";
 
 const Find = () => {
     const [allData, setAllData] = useState<IQuestion[]>([]);

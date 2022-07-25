@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import {IQuestion, IResponse, ISubject, ITeacher} from "../../utils/interfaces";
-import {question_get_one, subject_get_one, teacher_get_one} from "../../utils/apis";
 
 const Index = () => {
     const {id} = useParams();
@@ -9,40 +8,40 @@ const Index = () => {
     const [question, setQuestion] = useState<IQuestion | undefined>(undefined);
     const [subject, setSubject] = useState<ISubject | undefined>(undefined);
     const [user, setUser] = useState<ITeacher | undefined>(undefined);
-
-    const fetchQuestion = async () => {
-        const {status,data,message,success,error} : IResponse = await question_get_one(id);
-        if(success)
-            setQuestion(data);
-        else
-            alert(message);
-    }
-
-    const fetchUser = async () => {
-        if(!question) return;
-        const {status,data,message,success,error} : IResponse = await teacher_get_one(question.user);
-        if(success)
-            setUser(data);
-        else
-            alert(message);
-    }
-
-    const fetchSubject = async () => {
-        if(!question) return;
-        const {status,data,message,success,error} : IResponse = await subject_get_one(question.subject_id);
-        if(success)
-            setSubject(data);
-        else
-            alert(message);
-    }
+    //
+    // const fetchQuestion = async () => {
+    //     const {status,data,message,success,error} : IResponse = await question_get_one(id);
+    //     if(success)
+    //         setQuestion(data);
+    //     else
+    //         alert(message);
+    // }
+    //
+    // const fetchUser = async () => {
+    //     if(!question) return;
+    //     const {status,data,message,success,error} : IResponse = await teacher_get_one(question.user);
+    //     if(success)
+    //         setUser(data);
+    //     else
+    //         alert(message);
+    // }
+    //
+    // const fetchSubject = async () => {
+    //     if(!question) return;
+    //     const {status,data,message,success,error} : IResponse = await subject_get_one(question.subject_id);
+    //     if(success)
+    //         setSubject(data);
+    //     else
+    //         alert(message);
+    // }
 
     useEffect(() => {
-        fetchQuestion()
+        // fetchQuestion()
     }, [id]);
 
     useEffect(() => {
-        fetchSubject();
-        fetchUser();
+        // fetchSubject();
+        // fetchUser();
     }, [question]);
 
     return (

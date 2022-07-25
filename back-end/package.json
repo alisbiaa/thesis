@@ -4,9 +4,9 @@
   "description": "",
   "main": "dist/Server.js",
   "scripts": {
-    "test": "set NODE_ENV=\"test\" && jest",
+    "test": "jest",
     "test:watch": "set NODE_ENV=\"test\" && jest --watchAll --detectOpenHandles",
-    "start:dev": "nodemon src/Server.ts",
+    "dev": "nodemon src/Server.ts",
     "start": "node dist/Server.js",
     "prestart": "npm run build",
     "build": "tsc --build"

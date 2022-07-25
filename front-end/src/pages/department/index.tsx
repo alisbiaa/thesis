@@ -2,12 +2,9 @@ import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 import Header from "../../component/Header";
 import {IDepartment, IResponse} from "../../utils/interfaces";
-import {department_get_all, department_get_one} from "../../utils/apis";
 import TeachersList from "./TeachersList";
 import SubjectsList from "./SubjectsList";
-
-const fake_subjects = ['Subject 1', "Subject 2", "Subject 3", "Subject 4"];
-
+import {department_get_one} from "../../api/department.api";
 
 const Index = () => {
     const {id} = useParams();

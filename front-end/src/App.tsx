@@ -2,12 +2,12 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "./component/NavBar";
 import {Row} from "react-bootstrap";
-import './css/test.css';
+import './static/test.css';
 import {Route, Routes} from "react-router-dom";
 import Home from "./pages/Home";
 import Department from "./pages/department";
 import Ask from "./pages/Ask";
-import Index from "./pages/question";
+import Question from "./pages/question";
 import CreateDepartment from "./pages/create/CreateDepartment";
 import CreateSubject from "./pages/create/CreateSubject";
 import CreateStudent from "./pages/create/CreateStudent";
@@ -27,7 +27,7 @@ function App() {
                         <Route path="/" element={<Home/>}/>
                         <Route path="/department/:id" element={<Department/>}/>
                         <Route path="/ask" element={<Ask/>}/>
-                        <Route path="/question/:id" element={<Index/>}/>
+                        <Route path="/question/:id" element={<Question/>}/>
                         <Route path={"/find"} element={<Find/>} />
 
                         <Route path="/create/department" element={<CreateDepartment/>}/>

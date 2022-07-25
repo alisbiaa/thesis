@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
 import {Col, Row} from "react-bootstrap";
 import {IResponse, ITeacher} from "../../utils/interfaces";
-import {department_create, teacher_get_all} from "../../utils/apis";
 import {useNavigate} from "react-router-dom";
+import {department_create} from "../../api/department.api";
 
 const CreateDepartment = () => {
     const navigate = useNavigate();

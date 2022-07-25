@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {IResponse, ISubject} from "../../utils/interfaces";
-import {subject_get_all} from "../../utils/apis";
+import {subject_get_all} from "../../api/subject.api";
 
 type typeProps = {
     department_id: string | undefined;

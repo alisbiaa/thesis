@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {create, get_all, get_all_by_subject, get_one, remove} from "../controllers/question.controller";
+import {create, get_all, get_all_by_subject, get_one, remove} from "../../controllers/question.controller";
 
 const router = Router();
 
