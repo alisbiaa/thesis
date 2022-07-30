@@ -1,14 +1,21 @@
 import express from "express";
 import BaseRouter from "../routes";
-import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import {accessLogStream, handler} from "./logger";
 import swaggerUi from "swagger-ui-express";
 import swaggerDocument from "../swagger.json";
+import passport from "passport";
+import {BearerStrategy} from "passport-azure-ad";
+import {options} from "./authConfig";
+import dotenv from "dotenv";
 
 dotenv.config();
+
+const {
+    NODE_ENV
+} = process.env;
 
 const app = express();
 
@@ -23,18 +30,29 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Security
-if (process.env.NODE_ENV === 'production') {
+if (NODE_ENV === 'production') {
     app.use(helmet());
 }
 
 // Logger
-if (process.env.NODE_ENV === 'development') {
+if (NODE_ENV === 'development') {
     app.use(morgan(handler,{ stream: accessLogStream }));
 }
 
+console.log(options);
+// sso
+const bearerStrategy = new BearerStrategy(options, (token:any, done:any) => {
+        // Send user info using the second argument
+        done(null, {}, token);
+    }
+);
+app.use(passport.initialize());
+passport.use(bearerStrategy);
+
+
 // simple route
-app.get("/", (req, res) => {
-    res.json({ message: "Welcome to stackoverflow uni." });
+app.get("/", passport.authenticate('oauth-bearer', {session: false}), (req, res) => {
+    res.json({message: "Welcome to stackoverflow uni."});
 });
 
 app.use(BaseRouter);

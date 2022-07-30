@@ -6,9 +6,7 @@ const {
 
 const api = axios.create({
     baseURL : REACT_APP_BACKEND_ENDPOINT,
-    headers : {
 
-    }
 });
 
 export default api;

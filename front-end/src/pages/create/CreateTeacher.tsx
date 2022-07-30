@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
 import {Col, Row} from "react-bootstrap";
-import {IDepartment, IResponse} from "../../utils/interfaces";
+import {IDepartment, IResponse} from "../../static/interfaces";
 import { useNavigate } from "react-router-dom";
 import {department_get_all} from "../../api/department.api";
 

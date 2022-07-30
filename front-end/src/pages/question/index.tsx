@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {IQuestion, IResponse, ISubject, ITeacher} from "../../utils/interfaces";
+import {IQuestion, IResponse, ISubject, ITeacher} from "../../static/interfaces";
 
 const Index = () => {
     const {id} = useParams();

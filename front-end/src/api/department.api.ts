@@ -1,5 +1,5 @@
-import {IDepartment} from "../utils/interfaces";
-import baseAPI from "../utils/baseAPI";
+import {IDepartment} from "../static/interfaces";
+import baseAPI from "../config/baseAPI";
 
 export const department_get_all = async () => {
     try {

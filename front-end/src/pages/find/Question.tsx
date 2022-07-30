@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {ArchiveFill, BookmarkCheckFill, FlagFill} from "react-bootstrap-icons";
-import {IQuestion, IResponse, ISubject, ITeacher} from "../../utils/interfaces";
+import {IQuestion, IResponse, ISubject, ITeacher} from "../../static/interfaces";
 import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {question_get_one} from "../../api/question.api";

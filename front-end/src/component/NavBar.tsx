@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
-import {IDepartment, IResponse} from "../utils/interfaces";
+import {IDepartment, IResponse} from "../static/interfaces";
 import {department_get_all} from "../api/department.api";
 
 
@@ -83,7 +83,10 @@ const NavBar = () => {
                         </ul>
                     </div>
                 </li>
+
             </ul>
+
+
         </div>
     );
 };

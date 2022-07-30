@@ -1,21 +1,23 @@
 import React, {useEffect, useState} from 'react';
-import {IResponse, ISubject} from "../../utils/interfaces";
+import {IResponse, ISubject} from "../../static/interfaces";
 import {subject_get_all} from "../../api/subject.api";
+import {useParams} from "react-router-dom";
 
-type typeProps = {
-    department_id: string | undefined;
-}
 
-const SubjectsList = ({department_id} : typeProps) => {
+const SubjectsList = () => {
+    const {id} = useParams();
+
     const [subjects,setSubjects] = useState<ISubject[]>([]);
     useEffect(() => {
         const fetchData = async () => {
-            const {status,data,message,success,error} : IResponse = await subject_get_all(department_id);
+            const {status,data,message,success,error} : IResponse = await subject_get_all(id);
             if(success)
                 setSubjects(data);
+            else
+                setSubjects([]);
         }
         fetchData();
-    }, [department_id]);
+    }, [id]);
     return (
         <div className="row">
             {

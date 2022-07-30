@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Col, Row} from "react-bootstrap";
 import Header from "../component/Header";
-import {IResponse, ISubject, ITeacher} from "../utils/interfaces";
+import {IResponse, ISubject, ITeacher} from "../static/interfaces";
 import {useNavigate} from "react-router-dom";
 import {department_get_all} from "../api/department.api";
 import {subject_get_all} from "../api/subject.api";

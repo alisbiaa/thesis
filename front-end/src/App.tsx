@@ -13,11 +13,16 @@ import CreateSubject from "./pages/create/CreateSubject";
 import CreateStudent from "./pages/create/CreateStudent";
 import CreateTeacher from "./pages/create/CreateTeacher";
 import Find from "./pages/find";
+import Login from "./component/Login";
 
 
 function App() {
     return (
+
         <div className={"container-fluid"}>
+            <div className="position-absolute top-0 end-0">
+                <Login/>
+            </div>
             <Row>
                 <div className="col-2 p-3">
                     <NavBar/>

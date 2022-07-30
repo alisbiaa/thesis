@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {IResponse, ITeacher} from "../../utils/interfaces";
+import {IResponse, ITeacher} from "../../static/interfaces";
 
 
 type propTypes = {

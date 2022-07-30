@@ -1,9 +1,9 @@
-import baseAPI from "../utils/baseAPI";
+import baseAPI from "../config/baseAPI";
 
 export const subject_get_all = async (id:string|undefined) => {
     if(!id) return;
     try {
-        const {data} = await baseAPI.get(`/subject/get_all/${id}`);
+        const {data} = await baseAPI.get(`/api/subject/get_all/${id}`);
         return data;
     } catch (e:any) {
         return e?.response?.data;
@@ -12,7 +12,7 @@ export const subject_get_all = async (id:string|undefined) => {
 
 export const subject_create = async (name:string,department_id:string,description:string) => {
     try {
-        const {data} = await baseAPI.post(`/subject/`, {
+        const {data} = await baseAPI.post(`/api/subject/`, {
             name,
             department_id,
             description
@@ -26,7 +26,7 @@ export const subject_create = async (name:string,department_id:string,descriptio
 export const subject_get_one = async (id: string | undefined) => {
     if (!id) return;
     try {
-        const {data} = await baseAPI.get(`/subject/get_one/${id}`);
+        const {data} = await baseAPI.get(`/api/subject/get_one/${id}`);
         return data;
     } catch (e: any) {
         return e?.response?.data;

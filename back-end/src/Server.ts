@@ -1,12 +1,13 @@
 import app from "./utils/app";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
+dotenv.config();
 
 const {
     MONGO_CONNECTION_STRING,
     NODE_PORT
 } = process.env;
 
-console.log("---" + MONGO_CONNECTION_STRING);
 mongoose
     .connect(MONGO_CONNECTION_STRING ?? "", {
         dbName: "thesis",

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
 import {Card} from "react-bootstrap";
-import {IQuestion, IResponse} from "../../utils/interfaces";
+import {IQuestion, IResponse} from "../../static/interfaces";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
 import Question from "./Question";
