@@ -39,7 +39,7 @@ if (NODE_ENV === 'development') {
     app.use(morgan(handler,{ stream: accessLogStream }));
 }
 
-console.log(options);
+// console.log(options);
 // sso
 const bearerStrategy = new BearerStrategy(options, (token:any, done:any) => {
         // Send user info using the second argument

@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Col, Row} from "react-bootstrap";
 import Header from "../component/Header";
 import {IResponse, ISubject, ITeacher} from "../static/interfaces";
 import {useNavigate} from "react-router-dom";
@@ -70,32 +69,32 @@ const Ask = () => {
             <Header title={"Ask a question"}/>
             <div className={"card"}>
                 <div className={"card-body"}>
-                    <Row>
-                        <Col>
-                            <label className="form-label">Department</label>
-                            <select className="form-select mb-3" defaultValue={department_id ?? "default"}
-                                    onChange={e => setDepartment_id(e.target.value)}>
-                                <option value={"default"}>Select teacher</option>
-                                {
-                                    departments.map(department =>
-                                        <option value={department._id} key={department._id}>{department.name}</option>
-                                    )
-                                }
-                            </select>
-                        </Col>
-                        <Col>
-                            <label className="form-label">Subject</label>
-                            <select className="form-select mb-3" defaultValue={department_id ?? "default"}
-                                    onChange={e => setSubject_id(e.target.value)}>
-                                <option value={"default"}>Select subject</option>
-                                {
-                                    subjects.map(subject =>
-                                        <option value={subject._id} key={subject._id}>{subject.name}</option>
-                                    )
-                                }
-                            </select>
-                        </Col>
-                    </Row>
+                    {/*<Row>*/}
+                    {/*    <Col>*/}
+                    {/*        <label className="form-label">Department</label>*/}
+                    {/*        <select className="form-select mb-3" defaultValue={department_id ?? "default"}*/}
+                    {/*                onChange={e => setDepartment_id(e.target.value)}>*/}
+                    {/*            <option value={"default"}>Select teacher</option>*/}
+                    {/*            {*/}
+                    {/*                departments.map(department =>*/}
+                    {/*                    <option value={department._id} key={department._id}>{department.name}</option>*/}
+                    {/*                )*/}
+                    {/*            }*/}
+                    {/*        </select>*/}
+                    {/*    </Col>*/}
+                    {/*    <Col>*/}
+                    {/*        <label className="form-label">Subject</label>*/}
+                    {/*        <select className="form-select mb-3" defaultValue={department_id ?? "default"}*/}
+                    {/*                onChange={e => setSubject_id(e.target.value)}>*/}
+                    {/*            <option value={"default"}>Select subject</option>*/}
+                    {/*            {*/}
+                    {/*                subjects.map(subject =>*/}
+                    {/*                    <option value={subject._id} key={subject._id}>{subject.name}</option>*/}
+                    {/*                )*/}
+                    {/*            }*/}
+                    {/*        </select>*/}
+                    {/*    </Col>*/}
+                    {/*</Row>*/}
 
                     <div className="mb-3">
                         <label className="form-label">Email address</label>

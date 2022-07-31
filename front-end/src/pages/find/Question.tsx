@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {ArchiveFill, BookmarkCheckFill, FlagFill} from "react-bootstrap-icons";
 import {IQuestion, IResponse, ISubject, ITeacher} from "../../static/interfaces";
-import {Card} from "react-bootstrap";
 import {Link} from "react-router-dom";
 import {question_get_one} from "../../api/question.api";
 import {subject_get_one} from "../../api/subject.api";
@@ -53,35 +51,38 @@ const Question = ({id}:propTypes) => {
 
 
     return (
-        <Card className="border-0">
-            <Card.Body>
-                <Card.Title>
-                    {subject?.name ?? ""}
-                    <h6 className="float-end text-muted">
-                        2022/24/04 3:31 PM
-                    </h6>
-                </Card.Title>
-                <Card.Subtitle>
-                    <div className={"float-end"}>
-                        <FlagFill color={"red"}/>
-                        <BookmarkCheckFill color={"green"}/>
-                        <ArchiveFill color={"grey"}/>
-                    </div>
-                </Card.Subtitle>
+        <div>
 
-                <p className="card-text">
-                    <Link
-                        className={"text-decoration-none text-black"}
-                        to={`/question/${question?._id}`}
-                    >
-                        {question?.content ?? ""}
-                    </Link>
-                </p>
-                <a href="#" className="card-link text-decoration-none text-muted">
-                    {user?.name} {user?.last_name} <p className={"float-end"}> {user?.email}</p>
-                </a>
-            </Card.Body>
-        </Card>
+        </div>
+        // <Card className="border-0">
+        //     <Card.Body>
+        //         <Card.Title>
+        //             {subject?.name ?? ""}
+        //             <h6 className="float-end text-muted">
+        //                 2022/24/04 3:31 PM
+        //             </h6>
+        //         </Card.Title>
+        //         <Card.Subtitle>
+        //             <div className={"float-end"}>
+        //                 <FlagFill color={"red"}/>
+        //                 <BookmarkCheckFill color={"green"}/>
+        //                 <ArchiveFill color={"grey"}/>
+        //             </div>
+        //         </Card.Subtitle>
+        //
+        //         <p className="card-text">
+        //             <Link
+        //                 className={"text-decoration-none text-black"}
+        //                 to={`/question/${question?._id}`}
+        //             >
+        //                 {question?.content ?? ""}
+        //             </Link>
+        //         </p>
+        //         <a href="#" className="card-link text-decoration-none text-muted">
+        //             {user?.name} {user?.last_name} <p className={"float-end"}> {user?.email}</p>
+        //         </a>
+        //     </Card.Body>
+        // </Card>
 
     );
 };

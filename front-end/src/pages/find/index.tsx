@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
-import {Card} from "react-bootstrap";
 import {IQuestion, IResponse} from "../../static/interfaces";
 import Filter from "./Filter";
 import Pagination from "./Pagination";
@@ -25,23 +24,23 @@ const Find = () => {
     return (
         <div>
             <Header title={"Find"}/>
-            <Card>
-                <Card.Header>
-                    <Filter data={allData}/>
-                </Card.Header>
-                <Card.Body>
-                    <div>
-                        {
-                            allData.map((question,index) =>
-                                    <Question id={question._id ?? ""} key={index}/>
-                            )
-                        }
-                    </div>
-                </Card.Body>
-                <Card.Footer className={"text-muted"}>
-                    <Pagination/>
-                </Card.Footer>
-            </Card>
+            {/*<Card>*/}
+            {/*    <Card.Header>*/}
+            {/*        <Filter data={allData}/>*/}
+            {/*    </Card.Header>*/}
+            {/*    <Card.Body>*/}
+            {/*        <div>*/}
+            {/*            {*/}
+            {/*                allData.map((question,index) =>*/}
+            {/*                        <Question id={question._id ?? ""} key={index}/>*/}
+            {/*                )*/}
+            {/*            }*/}
+            {/*        </div>*/}
+            {/*    </Card.Body>*/}
+            {/*    <Card.Footer className={"text-muted"}>*/}
+            {/*        <Pagination/>*/}
+            {/*    </Card.Footer>*/}
+            {/*</Card>*/}
 
         </div>
     );

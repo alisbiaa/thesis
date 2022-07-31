@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
-import {Col, Row} from "react-bootstrap";
 import {IResponse, ITeacher} from "../../static/interfaces";
 import {useNavigate} from "react-router-dom";
 import {department_get_all} from "../../api/department.api";
@@ -44,43 +43,43 @@ const CreateSubject = () => {
             <Header title={"Create Subject"} />
             <div className="card">
                 <div className="card-body">
-                    <Row>
-                        <Col>
-                            <div className="mb-3">
-                                <label className="form-label">Name</label>
-                                <input type="text" className="form-control" value={name}
-                                       onChange={e => setName(e.target.value)}/>
-                            </div>
-                        </Col>
-                        <Col>
-                            <div className="mb-3">
-                                <label className="form-label">Department</label>
-                                <select className="form-select mb-3" defaultValue={department_id} onChange={e => setDepartment_id(e.target.value)}>
-                                    <option value={"1"}>Select department</option>
-                                    {
-                                        departments.map(department =>
-                                            <option value={department._id} key={department._id}>{department.name}</option>
-                                        )
-                                    }
-                                </select>
+                    {/*<Row>*/}
+                    {/*    <Col>*/}
+                    {/*        <div className="mb-3">*/}
+                    {/*            <label className="form-label">Name</label>*/}
+                    {/*            <input type="text" className="form-control" value={name}*/}
+                    {/*                   onChange={e => setName(e.target.value)}/>*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
+                    {/*    <Col>*/}
+                    {/*        <div className="mb-3">*/}
+                    {/*            <label className="form-label">Department</label>*/}
+                    {/*            <select className="form-select mb-3" defaultValue={department_id} onChange={e => setDepartment_id(e.target.value)}>*/}
+                    {/*                <option value={"1"}>Select department</option>*/}
+                    {/*                {*/}
+                    {/*                    departments.map(department =>*/}
+                    {/*                        <option value={department._id} key={department._id}>{department.name}</option>*/}
+                    {/*                    )*/}
+                    {/*                }*/}
+                    {/*            </select>*/}
 
-                            </div>
-                        </Col>
-                    </Row>
-                    <Row>
-                        <Col>
-                            <div className="mb-3">
-                                <label className="form-label">Description</label>
-                                <textarea
-                                    className="form-control"
-                                    value={description}
-                                    rows={3}
-                                    onChange={e => setDescription(e.target.value)}
-                                />
-                            </div>
-                        </Col>
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
+                    {/*</Row>*/}
+                    {/*<Row>*/}
+                    {/*    <Col>*/}
+                    {/*        <div className="mb-3">*/}
+                    {/*            <label className="form-label">Description</label>*/}
+                    {/*            <textarea*/}
+                    {/*                className="form-control"*/}
+                    {/*                value={description}*/}
+                    {/*                rows={3}*/}
+                    {/*                onChange={e => setDescription(e.target.value)}*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
 
-                    </Row>
+                    {/*</Row>*/}
 
                     <button className="btn  btn-outline-dark float-end" onClick={handleCreate}>Create</button>
                 </div>

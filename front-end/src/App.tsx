@@ -1,51 +1,40 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import NavBar from "./component/NavBar";
-import {Row} from "react-bootstrap";
-import './static/test.css';
-import {Route, Routes} from "react-router-dom";
-import Home from "./pages/Home";
-import Department from "./pages/department";
-import Ask from "./pages/Ask";
-import Question from "./pages/question";
-import CreateDepartment from "./pages/create/CreateDepartment";
-import CreateSubject from "./pages/create/CreateSubject";
-import CreateStudent from "./pages/create/CreateStudent";
-import CreateTeacher from "./pages/create/CreateTeacher";
-import Find from "./pages/find";
-import Login from "./component/Login";
+import {Breadcrumb, Layout, Menu} from 'antd';
+import SideBar from "./component/SideBar";
+
+const { Header, Content, Footer } = Layout;
 
 
-function App() {
+const App: React.FC = () => {
     return (
+        <Layout style={{ minHeight: '100vh' }}>
+            <SideBar/>
+            <Layout className="site-layout">
+                <Header className="site-layout-background" style={{ padding: 0}}  >
+                    <Menu
+                        theme="light"
+                        mode={"horizontal"}
+                        defaultSelectedKeys={['2']}
 
-        <div className={"container-fluid"}>
-            <div className="position-absolute top-0 end-0">
-                <Login/>
-            </div>
-            <Row>
-                <div className="col-2 p-3">
-                    <NavBar/>
-                </div>
-                <div className="col-10 p-3">
-                    <Routes>
-                        <Route path="/" element={<Home/>}/>
-                        <Route path="/department/:id" element={<Department/>}/>
-                        <Route path="/ask" element={<Ask/>}/>
-                        <Route path="/question/:id" element={<Question/>}/>
-                        <Route path={"/find"} element={<Find/>} />
-
-                        <Route path="/create/department" element={<CreateDepartment/>}/>
-                        <Route path="/create/subject" element={<CreateSubject/>}/>
-                        <Route path="/create/student" element={<CreateStudent/>}/>
-                        <Route path="/create/teacher" element={<CreateTeacher/>}/>
-                        <Route path="/test" element={<div> Hello this is a test</div>} />
-                    </Routes>
-                </div>
-            </Row>
-        </div>
-
+                    >
+                        <Menu.Item style={{marginLeft:"auto"}}>
+                            sadas
+                        </Menu.Item>
+                    </Menu>
+                </Header>
+                <Content style={{ margin: '0 16px' }}>
+                    <Breadcrumb style={{ margin: '16px 0' }}>
+                        <Breadcrumb.Item>User</Breadcrumb.Item>
+                        <Breadcrumb.Item>Bill</Breadcrumb.Item>
+                    </Breadcrumb>
+                    <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                        Bill is a cat.
+                    </div>
+                </Content>
+                <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+            </Layout>
+        </Layout>
     );
-}
+};
 
 export default App;

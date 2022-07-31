@@ -5,7 +5,12 @@
 
 import { LogLevel } from "@azure/msal-browser";
 
-const {REACT_APP_CLIENT_ID,REACT_APP_TENANT_ID,REACT_APP_API_SCOPE,REACT_APP_BACKEND_ENDPOINT} = process.env;
+const {
+    REACT_APP_CLIENT_ID,
+    REACT_APP_TENANT_ID,
+    REACT_APP_API_SCOPE,
+    REACT_APP_BACKEND_ENDPOINT
+} = process.env;
 
 /**
  * Configuration object to be passed to MSAL instance on creation.

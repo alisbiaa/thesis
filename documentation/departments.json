@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Department of Algorithms and their Applications",
+    "description": "Algorithms lie at the heart of computing. If we observe our surroundings, we can find several algorithms working to solve our daily life problems: Social media networks, GPS applications, Google search, e-commerce platforms, Netflix recommendation systems, etc. applications are powered by algorithms."
+  },
+  {
+    "name" : "Department of Programming Languages And Compilers",
+    "description": ""
+  },
+  {
+    "name" : "Department of Software Technology And Methodology",
+    "description": ""
+  },
+  {
+    "name" : "Department of Data Science and Engineering",
+    "description": ""
+  },
+  {
+    "name" : "Department of Computer Algebra",
+    "description": ""
+  },
+  {
+    "name" : "Department of Media & Educational Informatics",
+    "description": ""
+  },
+  {
+    "name" : "Department of Information Systems",
+    "description": ""
+  },
+  {
+    "name" : "Department of Numerical Analysis",
+    "description": ""
+  },
+  {
+    "name" : "Department of Cartography And Geoinformatics",
+    "description": ""
+  }
+]

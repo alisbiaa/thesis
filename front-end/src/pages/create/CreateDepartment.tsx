@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Header from "../../component/Header";
-import {Col, Row} from "react-bootstrap";
 import {IResponse, ITeacher} from "../../static/interfaces";
 import {useNavigate} from "react-router-dom";
 import {department_create} from "../../api/department.api";
@@ -33,30 +32,30 @@ const CreateDepartment = () => {
             <Header title={"Create Department"}/>
             <div className="card">
                 <div className="card-body">
-                    <Row>
-                        <Col>
-                            <div className="mb-3">
-                                <label className="form-label">Name</label>
-                                <input type="text" className="form-control" value={name}
-                                       onChange={e => setName(e.target.value)}/>
-                            </div>
-                        </Col>
+                    {/*<Row>*/}
+                    {/*    <Col>*/}
+                    {/*        <div className="mb-3">*/}
+                    {/*            <label className="form-label">Name</label>*/}
+                    {/*            <input type="text" className="form-control" value={name}*/}
+                    {/*                   onChange={e => setName(e.target.value)}/>*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
 
-                    </Row>
-                    <Row>
-                        <Col>
-                            <div className="mb-3">
-                                <label className="form-label">Description</label>
-                                <textarea
-                                    className="form-control"
-                                    value={description}
-                                    rows={3}
-                                    onChange={e => setDescription(e.target.value)}
-                                />
-                            </div>
-                        </Col>
+                    {/*</Row>*/}
+                    {/*<Row>*/}
+                    {/*    <Col>*/}
+                    {/*        <div className="mb-3">*/}
+                    {/*            <label className="form-label">Description</label>*/}
+                    {/*            <textarea*/}
+                    {/*                className="form-control"*/}
+                    {/*                value={description}*/}
+                    {/*                rows={3}*/}
+                    {/*                onChange={e => setDescription(e.target.value)}*/}
+                    {/*            />*/}
+                    {/*        </div>*/}
+                    {/*    </Col>*/}
 
-                    </Row>
+                    {/*</Row>*/}
 
                     <button className="btn  btn-outline-dark float-end" onClick={handleCreate}>Create</button>
                 </div>
