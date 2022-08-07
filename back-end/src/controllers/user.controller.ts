@@ -3,10 +3,17 @@ import {user_model} from "../models/user.model";
 import {department_model} from "../models/department.model";
 
 // Create new user
-export const create : RequestHandler = (req, res) => {
-    const {bio, email, last_name, name, department_id,role} = req.body;
+export const create : RequestHandler = async (req, res) => {
+    const {email, name} = req.body;
     try {
-        user_model.create({bio, email, last_name, name, department_id,role})
+        // find user :
+        const user = await user_model.findOne({email, name});
+        if(user)
+            return res.status(200).send({
+                data: user, status: 200, success: true, message: "User already exist!",
+            });
+
+        user_model.create({email, name})
             .then(data =>
                 res.status(200).send({
                     data, status:200, success:true, message: "User added successfully!",
@@ -44,14 +51,9 @@ export const remove : RequestHandler = (req, res) => {
 // Update user
 export const update : RequestHandler = (req, res) => {
     const {email} = req.params;
-    const {last_name, name, bio, active, department, subject} = req.body;
+    const {bio} = req.body;
     user_model.findOneAndUpdate({email}, {
-        last_name,
-        name,
-        bio,
-        active,
-        department,
-        subject
+        bio
     }, {useFindAndModify: false})
         .then(data => {
                 const status = data ? 200 : 404;

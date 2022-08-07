@@ -2,11 +2,11 @@
 :root {
     --font-header: 'Nova Mono', monospace;
     --font-text: 'Open Sans', sans-serif;
-    --color-theme: #F1EEDB;
+    --color-theme: #282B24;
     --color-bg: #282B24;
 
     --animation-sentence: 'You know you\'re supposed to leave, right?';
-    --animation-duration: 40s;
+    --animation-duration: 100s;
 }
 * {
     box-sizing: border-box;

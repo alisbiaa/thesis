@@ -1,41 +1,90 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import Header from "../../component/Header";
-import {IDepartment, IResponse} from "../../static/interfaces";
-import TeachersList from "./TeachersList";
-import SubjectsList from "./SubjectsList";
+import {IDepartment, IResponse, ISubject} from "../../static/interfaces";
 import {department_get_one} from "../../api/department.api";
+import {Breadcrumb, Col, Collapse, Divider, Row, Typography} from "antd";
+import {subject_get_all} from "../../api/subject.api";
+import _ from "lodash";
+
+const { Text } = Typography;
 
 const Index = () => {
     const {id} = useParams();
     const [department,setDepartment] = useState<IDepartment | undefined>(undefined);
+    const [subjects, setSubjects] = useState<ISubject[]>([]);
 
     useEffect(() => {
-        const fetchData = async () => {
+        const fetchDepartment = async () => {
             const {status,data,message,success,error} : IResponse = await department_get_one(id);
             if(success)
                 setDepartment(data);
             else
                 setDepartment(undefined);
         }
-        fetchData();
+        const fetchSubjects = async () => {
+            const {status,data,message,success,error} : IResponse = await subject_get_all(id);
+            if(success)
+                setSubjects(data);
+            else
+                setSubjects([]);
+        }
+        fetchDepartment();
+        fetchSubjects();
     }, [id]);
+
+    const genExtra = (semester:number) => (
+        <div
+            onClick={event => {
+                // If you don't want click extra trigger collapse, you can prevent this:
+                event.stopPropagation();
+            }}>
+            {semester}
+        </div>
+    );
 
     return (
         <>
-            <Header title={department?.name || ""}/>
-            <div className="card">
-                <div className="card-body">
-                    <p className="card-text"><small className="text-muted">Description </small></p>
-                    <p className="card-text"> {department?.description}</p>
-                    <p className="card-text"><small className="text-muted">Teachers </small></p>
-                    <TeachersList department_id={department?._id}/>
-                    <SubjectsList />
-                </div>
-                <div className="card-footer text-muted">
-                    Head department is...
-                </div>
+            <Breadcrumb style={{ margin: '16px 0' }}>
+                <Breadcrumb.Item>Departments</Breadcrumb.Item>
+                <Breadcrumb.Item>{department?.name}</Breadcrumb.Item>
+            </Breadcrumb>
+            <div className="site-layout-background" style={{ padding: 24, minHeight: 360 }}>
+                <Divider orientation="left" orientationMargin={20}> Description</Divider>
+                {department?.description}
+                <Row gutter={[16, 24]}>
+                    <Col className="gutter-row" span={17}>
+                        <Divider orientation={"left"} orientationMargin={20}>Highlights</Divider>
+                        <div>
+                            TODO
+                        </div>
+                    </Col>
+                    <Col className="gutter-row" span={7}>
+                        <Divider orientation="left" orientationMargin={20}>Subjects</Divider>
+
+                        <Collapse
+                            defaultActiveKey={['0']}
+                            expandIconPosition={"end"}
+                            ghost
+                        >
+                            {
+
+                            }
+                            {
+                                _.sortBy(subjects,["semester","credits"] ).map((el,index) =>
+                                    <Collapse.Panel header={el.name}  key={index} extra={genExtra(el.semester)}>
+                                        <Text disabled>{el.credits} Credits </Text>
+                                        <div> {el.description} </div>
+                                    </Collapse.Panel>
+                                )
+                            }
+
+                        </Collapse>
+
+                    </Col>
+
+                </Row>
             </div>
+
         </>
     );
 };

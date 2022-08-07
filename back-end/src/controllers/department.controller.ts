@@ -23,6 +23,29 @@ export const create: RequestHandler = (req, res) => {
     }
 };
 
+// Create department
+export const create_many: RequestHandler = (req, res) => {
+    const departments: IDepartment[] = req.body.data;
+    try {
+        department_model.create(departments)
+            .then(data =>
+                res.status(200).json({
+                    data, status: 200, success: true, message: "Department created successfully!",
+                })
+            )
+            .catch(error => // Wrong input
+                res.status(400).json({
+                    error : error?.message, status: 400, success: false, message: "Could not create department!",
+                })
+            );
+    } catch (error) {
+        res.status(500).json({
+            error, status: 500, success: false, message: "Internal Server Error!"
+        });
+    }
+};
+
+
 // Remove department
 export const remove: RequestHandler = (req, res) => {
     const {id} = req.params;

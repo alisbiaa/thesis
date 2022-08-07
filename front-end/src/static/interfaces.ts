@@ -26,6 +26,9 @@ export interface ISubject {
     "name": string,
     "department_id": string,
     "description": string,
+    credits: number;
+    semester: number;
+    link: string | null;
 }
 
 export interface IQuestion {
@@ -39,4 +42,14 @@ export interface IQuestion {
 
     department_id: string;
     subject_id: string;
+}
+
+
+export interface IUser {
+    email: string;
+    name: string;
+    bio: string | null;
+    department_id: string | null;
+    role: "student" | "teacher" | "admin" | "RO";
+    banned : boolean
 }

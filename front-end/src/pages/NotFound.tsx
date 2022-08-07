@@ -1,4 +1,5 @@
 import React from 'react';
+import "./../static/unauthorized.css";
 
 const NotFound = () => {
     return (
@@ -21,7 +22,7 @@ const NotFound = () => {
                             <ellipse cx="16.159" cy="280.936" rx=".853" ry=".331" opacity=".5"
                                      paint-order="stroke fill markers"/>
                         </g>
-                        <ellipse ry=".614" rx="8.082" cy="296.386" cx="13.229" opacity=".1" fill="#f1eedb"
+                        <ellipse ry=".614" rx="8.082" cy="296.386" cx="13.229" opacity=".1" fill="#00000"
                                  paint-order="stroke fill markers"/>
                     </g>
                 </symbol>

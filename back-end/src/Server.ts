@@ -5,11 +5,12 @@ dotenv.config();
 
 const {
     MONGO_CONNECTION_STRING,
-    NODE_PORT
+    NODE_PORT,
+    MONGO_CONNECTION_STRING_CLOUD
 } = process.env;
 
 mongoose
-    .connect(MONGO_CONNECTION_STRING ?? "", {
+    .connect(MONGO_CONNECTION_STRING_CLOUD ?? "", {
         dbName: "thesis",
         useNewUrlParser: true,
         useUnifiedTopology: true,

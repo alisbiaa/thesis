@@ -1,14 +1,20 @@
 import React from 'react';
+import {Breadcrumb} from "antd";
 
 
 type propTypes = {
-    title: string;
+    path: string[];
 }
-const Header = ({title} : propTypes) => {
+const Header = ({path} : propTypes) => {
     return (
-        <span className="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-                <span className="fs-5 fw-semibold">{title}</span>
-        </span>
+        <Breadcrumb style={{margin: '16px 0'}}>
+            {
+                path.map((el,index) =>
+                    <Breadcrumb.Item key={index}>{el}</Breadcrumb.Item>
+                )
+            }
+        </Breadcrumb>
+
     );
 };
 

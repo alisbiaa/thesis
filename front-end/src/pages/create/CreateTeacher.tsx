@@ -47,7 +47,6 @@ const CreateTeacher = () => {
 
     return (
         <div>
-            <Header title={"Create Teacher"}/>
             <div className="card">
                 <div className="card-body">
                     {/*<Row>*/}

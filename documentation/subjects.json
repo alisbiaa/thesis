@@ -1,0 +1,106 @@
+[
+  {
+    "name": "Computer systems",
+    "description": "A computer system is a set of integrated devices that input, output, process, and store data and information. Computer systems are currently built around at least one digital processing device. There are five main hardware components in a computer system: Input, Processing, Storage, Output and Communication devices.",
+    "credits" : "5",
+    "semester" : "1",
+    "link" : "https://www.inf.elte.hu/dstore/document/1483/Computer%20systems.pdf",
+    "department_id" : "Department of Media & Educational Technology"
+  },
+  {
+    "name": "Programming",
+    "description": "Problem solving strategies, the basics of computational problem solving. The tools and methods needed to solve problems. The steps of problem solving. The concepts of program and solution, and their relationship. The process of programming and creating programs. The principles of creating programs.",
+    "credits" : "6",
+    "semester" : "1",
+    "link" : "https://www.inf.elte.hu/dstore/document/1503/Programming.pdf",
+    "department_id" : "62e6d8052701ac00e4192bea"
+  },
+  {
+    "name": "Imperative programming",
+    "description": "Purpose and rules of programming languages: lexical, syntactic, semantic rules. Source code, object code. Compilation, execution, interpretation. Compile-time and run-time errors. Debugging. Syntax of expressions, literals, operators. Evaluation of expressions, precedence and associativity rules, laziness. Control structures, exception handling. Structured programming. ",
+    "credits" : "5",
+    "semester" : "1",
+    "link" : "https://www.inf.elte.hu/dstore/document/1493/Imperative%20programming.pdf",
+    "department_id" : "62e6d8052701ac00e4192be6"
+  },
+  {
+    "name": "Functional programming",
+    "description": "The functional programming paradigm: referential transparency, evaluation, normal form, strictness analysis. The elements of the programming languages Clean and Haskell: function definitions, local definitions, higher order functions, patterns, guards modules. Simple data structures, lists, tuples, records, arrays, ZF expressions, filters. Type systems, polymorph types, algebraic types. Type classes, instances, interactive functional programs.",
+    "credits" : "5",
+    "semester" : "1",
+    "link" : "null",
+    "department_id" : "62e6d8052701ac00e4192be6"
+  },
+  {
+    "name": "Basic Mathematics",
+    "description": "Algebraic, root and trigonometric expressions, solution of equations and inequalities. Basic logic, logical operations. Identities, usage of expressions with quantors. Mathematical induction. Basic linear algebra: vectors, operations, independence, basis. Matrices, matrix operations, rank, determinants.System of linear equations, inverse matrix. Eigenvalues and eigenvectors. Euclidean spaces, symmetric matrices.",
+    "credits" : "4",
+    "semester" : "1",
+    "link" : "https://www.inf.elte.hu/dstore/document/1481/Basic%20Mathematics.pdf",
+    "department_id" : "62e6d8052701ac00e4192bec"
+  },
+  {
+    "name": "Learning Methodology",
+    "description": "During this course, students from abroad are introduced into the Hungarian education system, and the teaching/learning habits at ELTE. In the frame of this course we develop the communication and learning skills of the english students, which will critically contribute to their success at the university. In addition we held them in their social integration via interna",
+    "credits" : "1",
+    "semester" : "1",
+    "link" : "https://www.inf.elte.hu/dstore/document/1495/Learning%20Methodology.pdf",
+    "department_id" : "null"
+  },
+  {
+    "name": "Business fundamentals",
+    "description": "The course aims to introduce the most important basic theories around starting up a business and managing it. Students can learn about the ways how ideas can be managed within a big organization, how to communicate them effectively",
+    "credits" : "3",
+    "semester" : "1",
+    "link" : "https://www.inf.elte.hu/dstore/document/1482/Business%20fundamentals.pdf",
+    "department_id" : "null"
+  },
+  {
+    "name": "Programming languages",
+    "description": "A programming language is any set of rules that converts strings, or graphical program elements in the case of visual programming languages, to various kinds of machine code output. Programming languages are one kind of computer language, and are used in computer programming to implement algorithms.",
+    "credits" : "6",
+    "semester" : "2",
+    "link" : "null",
+    "department_id" : "62e6d8052701ac00e4192be6"
+  },
+  {
+    "name": "Object-Oriented Programming",
+    "description": "Concept of datatype, implementation of custom type with class in C++. Concept of object and class. Features of object-oriented programming. Instantiation of class. Copying of object (swallow and deep copying). Classification of datatypes based on their structure. Collections and their processing. Concept of enumeration. Standard enumerators. Programming theorems on enumerator. Analogue programming based on programming theorems on enumerator and testing of these solutions. implementation of custom enumerators. Merging enumerator.",
+    "credits" : "6",
+    "semester" : "2",
+    "link" : "https://www.inf.elte.hu/dstore/document/1497/Object-oriented%20programming.pdf",
+    "department_id" : "62e6d8052701ac00e4192be7"
+  },
+  {
+    "name": "Web development",
+    "description": "Basics in Web Design, Brief History of Internet, What is World Wide Web, Internet protocols, The client-server model, webservers, Why create a web site, Web Standards, HTML versions, Introduction to CSS3 , Benefits of CSS, CSS syntax, Methods of adding CSS to HTML, Units, Colors and opacity, Selectors , The cascade, The Box model,, Advanced CSS layout, CSS frameworks, preprocessors",
+    "credits" : "3",
+    "semester" : "2",
+    "link" : "https://www.inf.elte.hu/dstore/document/1509/webdevelopment.pdf",
+    "department_id" : "62e6d8052701ac00e4192bea"
+  },
+  {
+    "name": "Algorithms and data structure I",
+    "description": "Algorithms in computing, insertion sort, operational complexity, space complexity, growth of functions, divide and conquer, merge sort.\nData structures, linear DSs, arrays, linked lists: print, search, build, insertion, deletion, insertion sort, merge, merge sort, unsorted and sorted set operations on linked lists.",
+    "credits" : 5,
+    "semester" : 2,
+    "link" : "https://www.inf.elte.hu/dstore/document/1476/Algorithms%20and%20data%20structures%20I.pdf",
+    "department_id" : "62e6d8052701ac00e4192be5"
+  },
+  {
+    "name": "Discrete mathematics I",
+    "description": "Concepts and notations from discrete mathematics are useful in studying and describing objects and problems in branches of computer science, such as computer algorithms, programming languages, cryptography, automated theorem proving, and software development.",
+    "credits" : 5,
+    "semester" : 2,
+    "link" : "https://www.inf.elte.hu/dstore/document/1489/Discrete%20mathematics%20I.pdf",
+    "department_id" : "62e6d8052701ac00e4192be9"
+  },
+  {
+    "name": "Analysis I",
+    "description": "The set of real numbers, bounded sets, least upper bound (sup), greatest lower bound (inf). Numerical sequences, monotone sequences. Convergence, Cauchy criterion. Algebraic operations and convergence. Convergence of monotone sequences. The n-th root of numbers. Extended real number line, limit in extended sense",
+    "credits" : 5,
+    "semester" : 2,
+    "link" : "https://www.inf.elte.hu/dstore/document/1478/Analysis_I.pdf",
+    "department_id" : "62e6d8052701ac00e4192bec"
+  }
+]

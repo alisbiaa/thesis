@@ -40,7 +40,6 @@ const CreateSubject = () => {
 
     return (
         <div>
-            <Header title={"Create Subject"} />
             <div className="card">
                 <div className="card-body">
                     {/*<Row>*/}

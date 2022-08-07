@@ -4,12 +4,12 @@ import {ISubject, subject_model} from "../models/subject.model";
 
 
 export const create: RequestHandler = (req, res) => {
-    const {department_id, name,description} : ISubject = req.body;
+    const {department_id, name,description,semester,link,credits} : ISubject = req.body;
     // Find department first
     department_model.findById(department_id)
         .then(department => {
             if (department) {
-                subject_model.create({name, department_id,description})
+                subject_model.create({name, department_id,description,semester,link,credits})
                     .then(data =>
                         res.status(200).send({
                             data, status: 200, success: true, message: "Subject created successfully!",
@@ -30,8 +30,27 @@ export const create: RequestHandler = (req, res) => {
             res.status(500).send({
                 error, status: 500, success: false, message: "Internal Server Error!"
             }));
+};
 
-
+export const create_many: RequestHandler = (req, res) => {
+    const subjects : ISubject[] = req.body.data;
+    try {
+        subject_model.create(subjects)
+            .then(data =>
+                res.status(200).send({
+                    data, status: 200, success: true, message: "Subject created successfully!",
+                })
+            )
+            .catch(error => // Wrong input
+                res.status(400).send({
+                    error, status: 400, success: false, message: "Could not create subject!",
+                })
+            );
+    }
+    catch (error) {
+        res.status(500).json({
+            error, status: 500, success: false, message: "Internal Server Error!"
+        });}
 
 };
 

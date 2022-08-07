@@ -1,10 +1,13 @@
 import {Router} from "express";
-import {create, get_all, get_one , remove} from "../../controllers/subject.controller";
+import {create, create_many, get_all, get_one, remove} from "../../controllers/subject.controller";
 
 const router = Router();
 
 // Create subject
 router.post("/", create);
+
+// create many
+router.post("/many", create_many);
 
 // Get one
 router.get("/get_one/:id", get_one);

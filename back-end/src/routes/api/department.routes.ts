@@ -1,10 +1,13 @@
 import {Router} from "express";
-import {create, get_one, get_all, remove, update} from "../../controllers/department.controller";
+import {create, get_one, get_all, remove, update, create_many} from "../../controllers/department.controller";
 
 const router = Router();
 
 // Create new department
 router.post("/", create);
+
+// Create many departments
+router.post("/many", create_many);
 
 // Find one
 router.get("/:id", get_one);

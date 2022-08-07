@@ -23,7 +23,6 @@ const Find = () => {
 
     return (
         <div>
-            <Header title={"Find"}/>
             {/*<Card>*/}
             {/*    <Card.Header>*/}
             {/*        <Filter data={allData}/>*/}

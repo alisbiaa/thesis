@@ -29,7 +29,7 @@ const CreateDepartment = () => {
 
     return (
         <div>
-            <Header title={"Create Department"}/>
+            <Header path={["Create Department"]}/>
             <div className="card">
                 <div className="card-body">
                     {/*<Row>*/}
