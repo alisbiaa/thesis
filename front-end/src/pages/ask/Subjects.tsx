@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Form, Select} from "antd";
 import {IResponse, ISubject} from "../../static/interfaces";
-import {subject_get_all} from "../../api/subject.api";
+import {subject_get_all_by_department} from "../../api/subject.api";
 
 const { Option } = Select;
 
@@ -16,7 +16,7 @@ const Subjects = ({ department_id}: propType) => {
         form.setFieldsValue({subject: undefined});
         if (!department_id) return;
         const fetchData = async () => {
-            const {status,data,message,success,error} : IResponse = await subject_get_all(department_id);
+            const {status,data,message,success,error} : IResponse = await subject_get_all_by_department(department_id);
             if(success)
                 setSubjects(data);
             else

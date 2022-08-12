@@ -4,7 +4,7 @@ import {useMsal} from "@azure/msal-react";
 import {get_user, update_user} from "../../api/user.api";
 import {IUser} from "../../static/interfaces";
 import {EditFilled} from "@ant-design/icons";
-import {openNotification} from "../../static/notificationManager";
+import {openNotification} from "../../static/functions";
 const { Paragraph } = Typography;
 
 const Info = () => {

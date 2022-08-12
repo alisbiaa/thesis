@@ -1,7 +1,7 @@
 import React from 'react';
-import {Breadcrumb, Layout, Menu} from 'antd';
+import {Layout, Menu} from 'antd';
 import SideBar from "./component/SideBar";
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import Department from "./pages/department";
 import Login from "./pages/Login";
 import {useIsAuthenticated, useMsal} from "@azure/msal-react";
@@ -9,12 +9,15 @@ import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
 import Profile from "./pages/profile";
 import Ask from "./pages/ask";
+import Search from "./pages/search/Search";
+import View from "./pages/view";
 
 
 const { Header, Content, Footer } = Layout;
 
 
 const App: React.FC = () => {
+    const navigate = useNavigate();
     const isAuthenticated = useIsAuthenticated();
     const { instance, accounts, inProgress } = useMsal();
     const handleLogout= ()=> {
@@ -22,6 +25,7 @@ const App: React.FC = () => {
             postLogoutRedirectUri: "/",
             mainWindowRedirectUri: "/"
         }).catch((error) => console.log(error));
+        navigate("/login");
     }
     return (
         isAuthenticated ?
@@ -43,11 +47,13 @@ const App: React.FC = () => {
                             </Menu.Item>
                         </Menu>
                     </Header>
-                    <Content style={{margin: '0 16px'}}>
+                    <Content style={{margin: '0 16px', overflow: 'initial' ,backgroundColor:"white"}} className="scrollable-container">
                         <Routes>
                             <Route path={"/"} element={<Home/>}/>
                             <Route path={"/profile"} element={<Profile/>}/>
                             <Route path={"/ask"} element={<Ask/>}/>
+                            <Route path={"/search"} element={<Search/>}/>
+                            <Route path={"/view/:id"} element={<View/>}/>
                             <Route path={"/department/:id"} element={<Department/>}/>
                             <Route path={"/404"} element={<NotFound/>}/>
                         </Routes>

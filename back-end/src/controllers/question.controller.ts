@@ -13,16 +13,20 @@ export const create: RequestHandler = (req, res) => {
     subject_model.findById(subject_id)
         .then(subject => {
             if (subject) { // subject exist
-                question_model.create({content,user,department_id,subject_id})
+                question_model.create({content, user, department_id, subject_id})
                     .then(data =>
                         res.status(200).send({
                             data, status: 200, success: true, message: "Question submitted successfully!",
                         })
                     )
                     .catch(error => // Wrong input
+                    {
                         res.status(400).send({
                             error, status: 400, success: false, message: "Could not submit question!",
                         })
+                        console.log(error);
+                    }
+
                     );
             }else { // Subject doesn't exist
                 res.status(404).send({

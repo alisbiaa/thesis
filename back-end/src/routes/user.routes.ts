@@ -12,13 +12,13 @@ router.delete("/:email", remove);
 // Update teacher
 router.put("/:email", update);
 
-// Find one
+// search one
 router.get("/:email", get_one);
 
-// Find all
-router.get("", get_all);
+// search all
+router.get("/", get_all);
 
-// Find all by department
+// search all by department
 router.get("/department/:id", get_all_by_department)
 
 export default router;

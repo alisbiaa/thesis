@@ -31,17 +31,31 @@ export interface ISubject {
     link: string | null;
 }
 
-export interface IQuestion {
-    _id?: string,
+
+export interface IAnswer {
+    _id: string,
     content: string;
     user: string; // email of the user
+    approved: boolean; // only teacher can approve
+    credibility: number;
+    createdAt: string;
+}
+
+export interface IQuestion {
+    _id: string,
+    content: string;
 
     solved: boolean;
     hidden: boolean;
     important: boolean;
 
+    user: string; // email of the user
     department_id: string;
     subject_id: string;
+
+    answers: IAnswer[];
+
+    createdAt: string;
 }
 
 

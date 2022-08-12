@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import {IDepartment, IResponse, ISubject} from "../../static/interfaces";
 import {department_get_one} from "../../api/department.api";
 import {Breadcrumb, Col, Collapse, Divider, Row, Typography} from "antd";
-import {subject_get_all} from "../../api/subject.api";
+import {subject_get_all_by_department} from "../../api/subject.api";
 import _ from "lodash";
 
 const { Text } = Typography;
@@ -22,7 +22,7 @@ const Index = () => {
                 setDepartment(undefined);
         }
         const fetchSubjects = async () => {
-            const {status,data,message,success,error} : IResponse = await subject_get_all(id);
+            const {status,data,message,success,error} : IResponse = await subject_get_all_by_department(id);
             if(success)
                 setSubjects(data);
             else

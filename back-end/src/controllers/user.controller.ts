@@ -70,7 +70,7 @@ export const update : RequestHandler = (req, res) => {
 
 }
 
-// Find one
+// search one
 export const get_one : RequestHandler = (req, res) => {
     const {email} = req.params;
     user_model.findOne({email})
@@ -112,10 +112,10 @@ export const get_all : RequestHandler = (req, res) => {
 // Get all by department
 export const get_all_by_department : RequestHandler = (req, res) => {
     const {id} = req.params;
-    // Find department
+    // search department
     department_model.findById(id)
         .then(data => {
-            if (data) { // Department exist
+            if (data) { // Subject exist
                 user_model.find({department_id: id})
                     .then(data => {
                         const status = data.length ? 200 : 404;
@@ -126,9 +126,9 @@ export const get_all_by_department : RequestHandler = (req, res) => {
                             message: data.length ? "All users!" : "Database empty",
                         })
                     })
-            } else { // Department doesn't exist
+            } else { // Subject doesn't exist
                 res.status(404).send({
-                    status: 404, success: false, message: "Department doesn't exist!",
+                    status: 404, success: false, message: "Subject doesn't exist!",
                 });
             }
         })

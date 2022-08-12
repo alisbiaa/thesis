@@ -59,6 +59,7 @@ const SideBar = () => {
                 <Menu.Item
                     key={2}
                     icon={<SearchOutlined/>}
+                    onClick={() => navigate("/search")}
                 >Search</Menu.Item>
                 <Menu.SubMenu key={3} title="Departments" icon={<DatabaseOutlined/>}>
                     {departments.map(el =>

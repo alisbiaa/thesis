@@ -19,7 +19,7 @@ const mock_department: IDepartment = {
     description: "short description",
 };
 
-describe('Department',  () =>{
+describe('Subject',  () =>{
     jest.setTimeout(30000);
 
     beforeAll(async () => await connect());

@@ -5,7 +5,7 @@ import {ISubject, subject_model} from "../models/subject.model";
 
 export const create: RequestHandler = (req, res) => {
     const {department_id, name,description,semester,link,credits} : ISubject = req.body;
-    // Find department first
+    // search department first
     department_model.findById(department_id)
         .then(department => {
             if (department) {
@@ -20,9 +20,9 @@ export const create: RequestHandler = (req, res) => {
                             error, status: 400, success: false, message: "Could not create subject!",
                         })
                     );
-            } else { // Department doesn't exist
+            } else { // Subject doesn't exist
                 res.status(404).send({
-                    status: 404, success: false, message: "Department doesn't exist!",
+                    status: 404, success: false, message: "Subject doesn't exist!",
                 });
             }
         })
@@ -73,12 +73,12 @@ export const get_one: RequestHandler = (req, res) => {
         );
 };
 
-export const get_all: RequestHandler = (req, res) => {
+export const get_all_by_department: RequestHandler = (req, res) => {
     const {id} = req.params; // id of the department
-    // Find department
+    // search department
     department_model.findById(id)
         .then(data => {
-            if (data) { // Department exist
+            if (data) { // Subject exist
                 subject_model.find({department_id: id})
                     .then(data => {
                         const status = data.length ? 200 : 404;
@@ -86,12 +86,12 @@ export const get_all: RequestHandler = (req, res) => {
                             data,
                             status,
                             success: !!data.length,
-                            message: data.length ? "All subjects!" : "Database empty",
+                            message: data.length ? `All subjects for ${id}!` : "Database empty",
                         })
                     })
-            } else { // Department doesn't exist
+            } else { // Subject doesn't exist
                 res.status(404).send({
-                    status: 404, success: false, message: "Department doesn't exist!",
+                    status: 404, success: false, message: "Subject doesn't exist!",
                 });
             }
         })
@@ -100,8 +100,24 @@ export const get_all: RequestHandler = (req, res) => {
                 error, status: 500, success: false, message: "Server side error!",
             })
         });
-
 };
+
+export const get_all : RequestHandler = (req, res) => {
+    subject_model.find()
+        .then(data => {
+            const status = data.length ? 200 : 404;
+            res.status(status).send({
+                data,
+                status,
+                success: !!data.length,
+                message: data.length ? "All subjects!" : "Database empty",
+            })
+        }).catch(error =>
+        res.status(500).send({
+            error, status: 500, success: false, message: "Server side error!",
+        })
+    );
+}
 
 export const remove: RequestHandler = (req, res) => {
     const {id} = req.params;

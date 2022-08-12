@@ -8,7 +8,7 @@ export const create: RequestHandler = (req, res) => {
         department_model.create({name,description})
                         .then(data =>
                             res.status(200).json({
-                                data, status: 200, success: true, message: "Department created successfully!",
+                                data, status: 200, success: true, message: "Subject created successfully!",
                             })
                         )
                         .catch(error => // Wrong input
@@ -30,7 +30,7 @@ export const create_many: RequestHandler = (req, res) => {
         department_model.create(departments)
             .then(data =>
                 res.status(200).json({
-                    data, status: 200, success: true, message: "Department created successfully!",
+                    data, status: 200, success: true, message: "Subject created successfully!",
                 })
             )
             .catch(error => // Wrong input
@@ -53,7 +53,7 @@ export const remove: RequestHandler = (req, res) => {
         .then(data => {
             const status = data ? 200 : 404;
             res.status(status).json({
-                data, status, success: !!data, message: data ? "Department deleted" : "Department doesn't exist."
+                data, status, success: !!data, message: data ? "Subject deleted" : "Subject doesn't exist."
             });
         })
         .catch(error =>
@@ -83,7 +83,7 @@ export const get_all: RequestHandler = (req, res) => {
 
 };
 
-// Find one
+// search one
 export const get_one: RequestHandler = (req, res) => {
     const {id} = req.params;
     department_model.findById(id)
@@ -93,7 +93,7 @@ export const get_one: RequestHandler = (req, res) => {
                 data,
                 status,
                 success: !!data,
-                message: data ? "Department found!" : "Department doesn't exist."
+                message: data ? "Subject found!" : "Subject doesn't exist."
             })
         })
         .catch(error =>
@@ -115,7 +115,7 @@ export const update: RequestHandler = async (req, res) => {
                 data,
                 status,
                 success: !!data,
-                message: data ? "Head department updated!" : "Department doesn't exist.",
+                message: data ? "Head department updated!" : "Subject doesn't exist.",
             })
         })
         .catch(error => // Wrong input

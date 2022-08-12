@@ -7,7 +7,7 @@ import Departments from "./Departments";
 import Subjects from "./Subjects";
 import TODO from "./TODO";
 import {question_create} from "../../api/question.api";
-import {openNotification} from "../../static/notificationManager";
+import {openNotification} from "../../static/functions";
 
 const { TextArea } = Input;
 

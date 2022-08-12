@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {IResponse, ISubject} from "../../static/interfaces";
-import {subject_get_all} from "../../api/subject.api";
+import {subject_get_all_by_department} from "../../api/subject.api";
 import {useParams} from "react-router-dom";
 
 
@@ -10,7 +10,7 @@ const SubjectsList = () => {
     const [subjects,setSubjects] = useState<ISubject[]>([]);
     useEffect(() => {
         const fetchData = async () => {
-            const {status,data,message,success,error} : IResponse = await subject_get_all(id);
+            const {status,data,message,success,error} : IResponse = await subject_get_all_by_department(id);
             if(success)
                 setSubjects(data);
             else

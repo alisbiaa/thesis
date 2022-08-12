@@ -9,10 +9,10 @@ router.post("/", create);
 // Create many departments
 router.post("/many", create_many);
 
-// Find one
+// search one
 router.get("/:id", get_one);
 
-// Find all
+// search all
 router.get("/", get_all);
 
 // Delete department

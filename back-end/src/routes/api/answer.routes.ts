@@ -1,11 +1,12 @@
 import {Router} from "express";
-// import {create, get_all, get_one, remove} from "../../controllers/answer.controller";
+import {create} from "../../controllers/answer.controller";
 
 
 const router = Router();
 
 // Publish answer
-// router.post("/", create);
+router.post("/", create);
+
 //
 // // Get one
 // router.get("/get_one/:id", get_one);
