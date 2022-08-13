@@ -2,8 +2,7 @@ name: Build and Deploy to Container App
 
 on:
   push:
-    branches:
-    - feat/ci-cd
+    branches: [ feat/ci-cd ]
 
 env:
   RESOURCE_GROUP_NAME: thesisApp
@@ -21,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout to the brqnch
+    - name: Checkout to the branch
       uses: actions/checkout@v2
 
     - name: Azure Login
@@ -59,7 +58,7 @@ jobs:
 
     steps:
     - name: Checkout to the branch
-    - uses: actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Azure Login
       uses: azure/login@v1
