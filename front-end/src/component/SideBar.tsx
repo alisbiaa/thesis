@@ -3,7 +3,7 @@ import {Layout, Menu, MenuProps,Divider} from "antd";
 import {
     UserOutlined,
     DatabaseOutlined,
-    SearchOutlined, QuestionCircleOutlined
+    SearchOutlined, QuestionCircleOutlined, UsergroupAddOutlined
 } from "@ant-design/icons";
 import {department_get_all} from "../api/department.api";
 import {IDepartment} from "../static/interfaces";
@@ -46,21 +46,11 @@ const SideBar = () => {
                 onClick={() => navigate("/")}
             />
 
-            <Divider orientation="left" plain style={style}>
-                Student
-            </Divider>
+
+            <Divider style={{ borderWidth: 2, borderColor: '#ffffff' }} />
+
+
             <Menu theme={"dark"} mode="vertical">
-                <Menu.Item
-                    key={1}
-                    icon={<UserOutlined/>}
-                    onClick={() => navigate("/profile")}
-                >
-                    Profile</Menu.Item>
-                <Menu.Item
-                    key={2}
-                    icon={<SearchOutlined/>}
-                    onClick={() => navigate("/search")}
-                >Search</Menu.Item>
                 <Menu.SubMenu key={3} title="Departments" icon={<DatabaseOutlined/>}>
                     {departments.map(el =>
                         <Menu.Item
@@ -72,19 +62,47 @@ const SideBar = () => {
                     )}
                 </Menu.SubMenu>
                 <Menu.Item
+                    key={2}
+                    icon={<SearchOutlined/>}
+                    onClick={() => navigate("/search")}
+                >
+                    Search
+                </Menu.Item>
+                <Divider orientation="left" plain style={style}>
+                    Student
+                </Divider>
+                <Menu.Item
+                    key={1}
+                    icon={<UserOutlined/>}
+                    onClick={() => navigate("/profile")}
+                >
+                    Profile
+                </Menu.Item>
+
+                <Menu.Item
                     icon={<QuestionCircleOutlined/>}
                     onClick={() => navigate("/ask")}
                     key={4}
                 >
                     Ask
                 </Menu.Item>
+                <Divider orientation="left" plain style={style}>
+                    Teacher
+                </Divider>
+                <Divider orientation="left" plain style={style}>
+                    Admin
+                </Divider>
+                <Menu.Item
+                    icon={<UsergroupAddOutlined/>}
+                    onClick={() => navigate("/admin/users")}
+                    key={5}
+                >
+                    Users
+                </Menu.Item>
             </Menu>
-            <Divider orientation="left" plain style={style}>
-                Teacher
-            </Divider>
-            <Divider orientation="left" plain style={style}>
-                Admin
-            </Divider>
+
+
+
         </Sider>
     );
 };

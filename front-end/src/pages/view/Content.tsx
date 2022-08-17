@@ -1,4 +1,4 @@
-import { Spin} from 'antd';
+import {Spin, Typography} from 'antd';
 import React, {useEffect, useState} from 'react';
 import {useNavigate, useParams} from "react-router-dom";
 import {IQuestion} from "../../static/interfaces";
@@ -26,13 +26,13 @@ const Content = () => {
         fetchData();
     }, [id]);
 
-
+    const { Paragraph } = Typography;
     return (
         <Spin spinning={loading}>
 
             <CommentThread
                 author={question?.user || ""}
-                content={<p>{question?.content}</p>}
+                content={<Paragraph copyable={true}>{question?.content}</Paragraph>}
                 createdAt={timeParser(question?.createdAt)|| ""}
             >
                 {
@@ -40,7 +40,7 @@ const Content = () => {
                         <CommentThread
                             key={el._id}
                             author={el?.user || ""}
-                            content={<p>{el?.content}</p>}
+                            content={<Paragraph copyable={true}>{el?.content}</Paragraph>}
                             createdAt={timeParser(el?.createdAt) || ""}
                         />
                     )

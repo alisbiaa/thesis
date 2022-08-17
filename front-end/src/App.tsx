@@ -11,15 +11,14 @@ import Profile from "./pages/profile";
 import Ask from "./pages/ask";
 import Search from "./pages/search/Search";
 import View from "./pages/view";
-
+import Users from "./users";
 
 const { Header, Content, Footer } = Layout;
-
 
 const App: React.FC = () => {
     const navigate = useNavigate();
     const isAuthenticated = useIsAuthenticated();
-    const { instance, accounts, inProgress } = useMsal();
+    const { instance } = useMsal();
     const handleLogout= ()=> {
         instance.logoutPopup({
             postLogoutRedirectUri: "/",
@@ -55,6 +54,9 @@ const App: React.FC = () => {
                             <Route path={"/search"} element={<Search/>}/>
                             <Route path={"/view/:id"} element={<View/>}/>
                             <Route path={"/department/:id"} element={<Department/>}/>
+                            {/* Admin routes */}
+                            <Route path={"/admin/users"} element={<Users/>}/>
+
                             <Route path={"/404"} element={<NotFound/>}/>
                         </Routes>
                     </Content>

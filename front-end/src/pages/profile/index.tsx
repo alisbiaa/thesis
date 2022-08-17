@@ -38,6 +38,7 @@ const Profile = () => {
                                         icon={<UserOutlined/>}
                                         shape="square"
                                         size={100}
+                                        src="https://joeschmoe.io/api/v1/random"
                                     />
                                 </Badge>
                             </span>

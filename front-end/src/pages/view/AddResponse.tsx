@@ -31,7 +31,7 @@ const AddResponse = () => {
             });
             setTimeout(() => {
                 window.location.reload();
-            }, 3000);
+            }, 1500);
         } else
             openNotification({
                 message: "Post comment",
