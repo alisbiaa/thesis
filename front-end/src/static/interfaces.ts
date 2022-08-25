@@ -12,14 +12,7 @@ export interface IDepartment {
     "description" : string
 }
 
-export interface ITeacher {
-    "department_id": string | null,
-    "_id": string,
-    "bio": string,
-    "email": string,
-    "last_name": string,
-    "name": string,
-}
+
 
 export interface ISubject {
     "_id": string,

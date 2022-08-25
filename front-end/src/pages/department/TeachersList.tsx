@@ -1,34 +1,44 @@
 import React, {useEffect, useState} from 'react';
-import {IResponse, ITeacher} from "../../static/interfaces";
+import {IResponse, IUser} from "../../static/interfaces";
+import {teacher_get_all_by_department} from "../../api/user.api";
+import {useParams} from "react-router-dom";
+import {Avatar, Divider, List} from "antd";
 
 
-type propTypes = {
-    department_id: string | undefined;
-}
-const TeachersList = ({department_id}:propTypes) => {
-
-    const [teachers, setTeachers] = useState<ITeacher[]>([]);
+const TeachersList = () => {
+    const {id} = useParams();
+    const [teachers, setTeachers] = useState<IUser[]>([]);
     useEffect(() => {
         const fetchData = async () => {
-            if(!department_id) return;
-            // const {status,data,message,success,error} : IResponse = await teacher_get_all_by_department(department_id);
-            // if(success)
-            //     setTeachers(data);
+            if(!id) return;
+            const {status,data,message,success,error} : IResponse = await teacher_get_all_by_department(id);
+            if(success)
+                setTeachers(data);
+            else
+                setTeachers([]);
         }
         fetchData();
-    }, [department_id]);
+    }, [id]);
 
     return (
-        <ul className="list-group list-group-flush">
-            {
-                teachers.map(teacher =>
-                    <li className="list-group-item" key={teacher._id}>
-                        <span>{teacher.name} {teacher.last_name}</span>
-                        <small className="text-muted float-end">{teacher.email}</small>
-                    </li>
-                )
-            }
-        </ul>
+        <>
+            <Divider orientation={"left"} orientationMargin={20}>Teachers</Divider>
+            <List>
+                {
+                    teachers.map(teacher =>
+                        <List.Item key={teacher.email} >
+                            <List.Item.Meta
+                                avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+                                // TODO : change the href  ...
+                                title={<a href="https://ant.design">{teacher.name}</a>}
+                                description={teacher.email}
+                            >
+                            </List.Item.Meta>
+                        </List.Item>
+                    )
+                }
+            </List>
+        </>
 
     );
 };

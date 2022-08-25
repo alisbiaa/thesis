@@ -1,6 +1,6 @@
 import express from "express";
 import BaseRouter from "../routes";
-import cors from "cors";
+import cors, {CorsOptions} from "cors";
 import helmet from "helmet";
 import morgan from "morgan";
 import {accessLogStream, handler} from "./logger";
@@ -14,7 +14,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const {
-    NODE_ENV
+    NODE_ENV,
+    CLIENT_ENDPOINT
 } = process.env;
 
 const app = express();
@@ -23,8 +24,9 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 // Setting up cors
-const corsOptions = {
-    // origin: process.env.CLIENT_ORIGIN || "http://localhost:8081",
+const corsOptions : CorsOptions = {
+    origin: CLIENT_ENDPOINT,
+    credentials: true,
 };
 
 app.use(cors(corsOptions));

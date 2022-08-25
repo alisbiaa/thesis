@@ -37,7 +37,8 @@ const SideBar = () => {
 
     const [collapsed, setCollapsed] = useState(false);
     return (
-        <Sider theme={"dark"} collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
+        <Sider
+               theme={"dark"} collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
             <img
                 loading={"lazy"}
                 src={collapsed ? "/elte-logo-sm.svg" : "/elte-logo.svg"}
@@ -100,7 +101,6 @@ const SideBar = () => {
                     Users
                 </Menu.Item>
             </Menu>
-
 
 
         </Sider>

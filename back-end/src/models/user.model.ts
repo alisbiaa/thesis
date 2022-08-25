@@ -26,6 +26,13 @@ const schema = new Schema<IUser>({
         type: Boolean,
         default: false,
     }
-}, {timestamps: true, autoIndex: true});
+}, {
+    timestamps: true,
+    autoIndex: true,
+    collation : {
+        strength: 2,
+        locale: "en",
+    }
+});
 
 export const user_model = model<IUser>("user", schema);

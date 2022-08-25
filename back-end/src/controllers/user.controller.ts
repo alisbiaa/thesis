@@ -4,29 +4,34 @@ import {department_model} from "../models/department.model";
 
 // Create new user
 export const create : RequestHandler = async (req, res) => {
-    const {email, name} = req.body;
+    const {email, name, department_id, role} = req.body;
     try {
         // find user :
-        const user = await user_model.findOne({email, name});
+        const user = await user_model.findOne({
+            email: {$regex: new RegExp("^" + email.toLowerCase(), "i")}
+        });
         if(user)
             return res.status(200).send({
                 data: user, status: 200, success: true, message: "User already exist!",
             });
 
-        user_model.create({email, name})
+        user_model.create({email, name, department_id, role})
             .then(data =>
                 res.status(200).send({
-                    data, status:200, success:true, message: "User added successfully!",
+                    data, status: 200, success: true, message: "User added successfully!",
                 })
             )
             .catch(error =>
                 res.status(400).send({
-                    error, status: 400, success: false, message: "Could not create user with id=" + email,
+                    error: error?.message,
+                    status: 400,
+                    success: false,
+                    message: "Could not create user with id=" + email,
                 })
-            )
-    } catch (error) {
+            );
+    } catch (error : any) {
         res.status(500).send({
-            error, status: 500, success: false, message: "Internal Server Error!"
+            error : error?.message, status: 500, success: false, message: "Internal Server Error!"
         });
     }
 }
@@ -73,7 +78,10 @@ export const update : RequestHandler = (req, res) => {
 // search one
 export const get_one : RequestHandler = (req, res) => {
     const {email} = req.params;
-    user_model.findOne({email})
+    user_model.findOne({
+        // email: { $regex: new RegExp("^" + email.toLowerCase(), "i") }
+        email
+    })
         .then(data => {
             const status = data ? 200 : 404;
             res.status(status).send({

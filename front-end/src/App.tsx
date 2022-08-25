@@ -11,7 +11,7 @@ import Profile from "./pages/profile";
 import Ask from "./pages/ask";
 import Search from "./pages/search/Search";
 import View from "./pages/view";
-import Users from "./users";
+import Users from "./pages/users";
 
 const { Header, Content, Footer } = Layout;
 
@@ -46,7 +46,7 @@ const App: React.FC = () => {
                             </Menu.Item>
                         </Menu>
                     </Header>
-                    <Content style={{margin: '0 16px', overflow: 'initial' ,backgroundColor:"white"}} className="scrollable-container">
+                    <Content style={{padding: '0 16px', overflow: 'initial' ,backgroundColor:"white"}} className="scrollable-container">
                         <Routes>
                             <Route path={"/"} element={<Home/>}/>
                             <Route path={"/profile"} element={<Profile/>}/>

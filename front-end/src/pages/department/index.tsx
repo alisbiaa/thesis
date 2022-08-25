@@ -4,14 +4,13 @@ import {IDepartment, IResponse, ISubject} from "../../static/interfaces";
 import {department_get_one} from "../../api/department.api";
 import {Breadcrumb, Col, Collapse, Divider, Row, Typography} from "antd";
 import {subject_get_all_by_department} from "../../api/subject.api";
-import _ from "lodash";
+import SubjectsList from "./SubjectsList";
+import TeachersList from "./TeachersList";
 
-const { Text } = Typography;
 
 const Index = () => {
     const {id} = useParams();
     const [department,setDepartment] = useState<IDepartment | undefined>(undefined);
-    const [subjects, setSubjects] = useState<ISubject[]>([]);
 
     useEffect(() => {
         const fetchDepartment = async () => {
@@ -21,26 +20,8 @@ const Index = () => {
             else
                 setDepartment(undefined);
         }
-        const fetchSubjects = async () => {
-            const {status,data,message,success,error} : IResponse = await subject_get_all_by_department(id);
-            if(success)
-                setSubjects(data);
-            else
-                setSubjects([]);
-        }
         fetchDepartment();
-        fetchSubjects();
     }, [id]);
-
-    const genExtra = (semester:number) => (
-        <div
-            onClick={event => {
-                // If you don't want click extra trigger collapse, you can prevent this:
-                event.stopPropagation();
-            }}>
-            {semester}
-        </div>
-    );
 
     return (
         <>
@@ -52,34 +33,17 @@ const Index = () => {
                 <Divider orientation="left" orientationMargin={20}> Description</Divider>
                 {department?.description}
                 <Row gutter={[16, 24]}>
-                    <Col className="gutter-row" span={17}>
+                    <Col className="gutter-row" span={8}>
                         <Divider orientation={"left"} orientationMargin={20}>Highlights</Divider>
                         <div>
                             TODO
                         </div>
                     </Col>
-                    <Col className="gutter-row" span={7}>
-                        <Divider orientation="left" orientationMargin={20}>Subjects</Divider>
-
-                        <Collapse
-                            defaultActiveKey={['0']}
-                            expandIconPosition={"end"}
-                            ghost
-                        >
-                            {
-
-                            }
-                            {
-                                _.sortBy(subjects,["semester","credits"] ).map((el,index) =>
-                                    <Collapse.Panel header={el.name}  key={index} extra={genExtra(el.semester)}>
-                                        <Text disabled>{el.credits} Credits </Text>
-                                        <div> {el.description} </div>
-                                    </Collapse.Panel>
-                                )
-                            }
-
-                        </Collapse>
-
+                    <Col className="gutter-row" span={8}>
+                        <TeachersList/>
+                    </Col>
+                    <Col className="gutter-row" span={8}>
+                        <SubjectsList/>
                     </Col>
 
                 </Row>

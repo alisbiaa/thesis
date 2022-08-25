@@ -30,3 +30,22 @@ export const update_user = async ({email, bio}: any) => {
         return e?.response?.data;
     }
 };
+
+export const teacher_get_all_by_department = async (id: string) => {
+    if (!id) return;
+    try {
+        const {data} = await baseAPI.get(`/user/department/${id}`);
+        return data;
+    } catch (e: any) {
+        return e?.response?.data;
+    }
+};
+
+export const get_all_users = async () => {
+    try {
+        const {data} = await baseAPI.get(`/user`);
+        return data;
+    } catch (e: any) {
+        return e?.response?.data;
+    }
+};
