@@ -1,3 +1,4 @@
+# Description
 The emergence and rapid spread of the Coronavirus in the spring of 2020 has fundamentally changed our lives. The most important change has been the attempt to minimize face–to–face contacts everywhere in order to keep the epidemic under control. Public gatherings were banned, shopping malls were closed, and sporting events were also cancelled. Inevitably, institutions had to switch to emergency remote education (ERE) at very short notice, which presented several problems for all participants.
 
 
@@ -58,9 +59,9 @@ To start the application as a developer execute the following commands:
 >```
 >
 >[http://localhost:5000](http://localhost:3000)
-## Production
 
-# Front-end
+
+# Front-end [:link:](/front-end)
 
 # Back-end [:link:](/back-end)
 
