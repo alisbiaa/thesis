@@ -12,6 +12,8 @@ export interface IQuestion {
     department_id: string;
     subject_id: string;
 
+    attachment? : string;
+
     answers: IAnswer[];
 }
 
@@ -25,6 +27,8 @@ const schema = new Schema<IQuestion>({
     user: {type: String, required: true},
     department_id: {type: String, required: true},
     subject_id: {type: String, required: true},
+
+    attachment : {type: String, required: false}, // https url
 
     answers : {
         type : [answer_schema],

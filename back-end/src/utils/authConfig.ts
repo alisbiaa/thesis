@@ -29,7 +29,7 @@ const config  = {
 }
 
 // sso
-export const options : any= {
+export const options : any = {
     identityMetadata: `https://${config.metadata.authority}/${config.credentials.tenantID}/${config.metadata.version}/${config.metadata.discovery}`,
     issuer: `https://${config.metadata.authority}/${config.credentials.tenantID}/${config.metadata.version}`,
     clientID: config.credentials.clientID,

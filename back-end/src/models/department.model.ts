@@ -3,9 +3,7 @@ import {model, Schema} from "mongoose";
 export interface IDepartment {
     name: string;
     description: string;
-
 }
-
 
 const schema = new Schema<IDepartment>({
     name : {type : String, required : true, unique: true},

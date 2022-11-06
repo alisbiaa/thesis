@@ -4,7 +4,6 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const {
-    MONGO_CONNECTION_STRING,
     NODE_PORT,
     MONGO_CONNECTION_STRING_CLOUD
 } = process.env;

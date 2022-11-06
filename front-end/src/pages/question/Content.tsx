@@ -1,14 +1,13 @@
-import {Spin, Typography} from 'antd';
+import {Spin} from 'antd';
 import React, {useEffect, useState} from 'react';
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {IQuestion} from "../../static/interfaces";
 import {question_get_one} from "../../api/question.api";
 import CommentThread from "./CommentThread";
-import {timeParser} from "../../static/functions";
+import QuestionThread from "./QuestionThread";
 
 const Content = () => {
     const {id} = useParams();
-    let navigate = useNavigate();
 
     const [loading, setLoading] = useState<boolean>(true);
     const [question, setQuestion] = useState<IQuestion | null>(null);
@@ -16,7 +15,7 @@ const Content = () => {
     useEffect(() => {
         setLoading(true);
         const fetchData = async () => {
-            const {message, success, error, data} = await question_get_one(id);
+            const {success, data} = await question_get_one(id);
             if (success) {
                 setQuestion(data);
                 setLoading(false);
@@ -26,29 +25,21 @@ const Content = () => {
         fetchData();
     }, [id]);
 
-    const { Paragraph } = Typography;
     return (
         <Spin spinning={loading}>
-
-            <CommentThread
-                author={question?.user || ""}
-                content={<Paragraph copyable={true}>{question?.content}</Paragraph>}
-                createdAt={timeParser(question?.createdAt)|| ""}
+            <QuestionThread
+                question={question}
             >
                 {
                     question?.answers.map(el =>
                         <CommentThread
                             key={el._id}
-                            author={el?.user || ""}
-                            content={<Paragraph copyable={true}>{el?.content}</Paragraph>}
-                            createdAt={timeParser(el?.createdAt) || ""}
+                            answer={el}
                         />
                     )
                 }
-            </CommentThread>
-
+            </QuestionThread>
         </Spin>
-
     );
 };
 

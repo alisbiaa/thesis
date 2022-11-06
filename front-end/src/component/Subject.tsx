@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {IResponse, ISubject} from "../../static/interfaces";
-import {subject_get_one} from "../../api/subject.api";
+import {IResponse, ISubject} from "../static/interfaces";
+import {subject_get_one} from "../api/subject.api";
 
 type propType = {
     subject_id: string;
@@ -12,7 +12,7 @@ const Subject = ({subject_id} : propType) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const {data,message,success,status,error}: IResponse = await subject_get_one(subject_id);
+            const {data,success}: IResponse = await subject_get_one(subject_id);
             if(success)
                 setSubject(data);
             else

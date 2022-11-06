@@ -5,13 +5,13 @@ import {Types} from "mongoose";
 import {department_model, IDepartment} from "../models/department.model";
 import {IUser, user_model} from "../models/user.model";
 
-const mock_teacher: IUser = {
-    department_id: "",
+const mock_user: IUser = {
+    banned: false,
+    department_id: null,
     role: "admin",
     name: "Ali",
     bio: "Random Bio",
-    email: "alisbiaazayen@gmail.com",
-    last_name: "Sbiaa Zayen"
+    email: "alisbiaazayen@gmail.com"
 };
 
 const mock_department: IDepartment = {

@@ -8,12 +8,13 @@ export const create: RequestHandler = (req, res) => {
         user,
         department_id,
         subject_id,
+        attachment,
     } : IQuestion = req.body;
 
     subject_model.findById(subject_id)
         .then(subject => {
             if (subject) { // subject exist
-                question_model.create({content, user, department_id, subject_id})
+                question_model.create({content, user, department_id, subject_id, attachment})
                     .then(data =>
                         res.status(200).send({
                             data, status: 200, success: true, message: "Question submitted successfully!",
@@ -41,11 +42,21 @@ export const create: RequestHandler = (req, res) => {
 }
 
 export const get_all : RequestHandler = (req, res) => {
+    const query = req.query;
+    const conditions = Object.keys(query)
+        .reduce((result: any, key) => {
+            if (query[key] ) {
+                result[key] = query[key];
+            }
+            return result;
+        }, {});
 
-    question_model.find({})
+    question_model.find(conditions)
+        .select(['-answers','-updatedAt', '-__v'])
         .then(data => {
             const status = data.length ? 200 : 404;
             res.status(status).send({
+                totalCount : data.length,
                 data,
                 status,
                 success: !!data.length,

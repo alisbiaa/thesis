@@ -1,5 +1,5 @@
 import React from 'react';
-import {Col, Row, Spin} from "antd";
+import {Col, Row} from "antd";
 import TL from "./Timeline";
 import Header from "../../component/Header";
 import Content from "./Content";
@@ -14,7 +14,8 @@ const View = () => {
             <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
                 <Row gutter={[16, 16]}>
                     <Col span={4}>
-                        <TL/>
+                        {/* TODO */}
+                        {/*<TL/>*/}
                     </Col>
                     <Col span={16}>
                         <Content/>

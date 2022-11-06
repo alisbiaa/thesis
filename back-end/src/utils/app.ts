@@ -10,6 +10,7 @@ import passport from "passport";
 import {BearerStrategy} from "passport-azure-ad";
 import {options} from "./authConfig";
 import dotenv from "dotenv";
+import session from "express-session";
 
 dotenv.config();
 
@@ -22,6 +23,17 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(
+    session({
+        secret: "this_is_a_secret",
+        resave: false,
+        saveUninitialized: true,
+        cookie: {
+            maxAge: 360000,
+            secure: false // this should be true only when you don't want to show it for security reason
+        }
+    })
+)
 
 // Setting up cors
 const corsOptions : CorsOptions = {
@@ -49,11 +61,19 @@ const bearerStrategy = new BearerStrategy(options, (token:any, done:any) => {
     }
 );
 app.use(passport.initialize());
+app.use(passport.session());
 passport.use(bearerStrategy);
 
+passport.serializeUser(function(user:any, done) {
+    done(null, user);
+});
+
+passport.deserializeUser(function(user:any, done) {
+    done(null, user);
+});
 
 // simple route
-app.get("/", passport.authenticate('oauth-bearer', {session: false}), (req, res) => {
+app.get("/", passport.authenticate('oauth-bearer', {session: true}), (req, res) => {
     res.json({message: "Welcome to stackoverflow uni."});
 });
 

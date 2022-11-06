@@ -1,0 +1,65 @@
+Folder PATH listing
+Volume serial number is C27C-0E4F
+C:.
+--   .dockerignore
+--   .env
+--   babel.config.js
+--   Dockerfile.dev
+--   jest.config.ts
+--   package-lock.json
+--   package.json
+--   tree.txt
+--   tsconfig.json
+--
+--------src
+    --   Server.ts
+    --   swagger.json
+    --
+    --------controllers
+    --       actions.controller.ts
+    --       answer.controller.ts
+    --       department.controller.ts
+    --       question.controller.ts
+    --       subject.controller.ts
+    --       user.controller.ts
+    --
+    --------middlewares
+    --       adminAuth.ts
+    --       studentAuth.ts
+    --       teacherAuth.ts
+    --
+    --------models
+    --       answer.model.ts
+    --       department.model.ts
+    --       question.model.ts
+    --       report.model.ts
+    --       student.model.ts
+    --       subject.model.ts
+    --       user.model.ts
+    --
+    --------routes
+    --   --   index.ts
+    --   --   user.routes.ts
+    --   --
+    --   --------action
+    --   --       index.ts
+    --   --
+    --   --------api
+    --           answer.routes.ts
+    --           department.routes.ts
+    --           index.ts
+    --           question.routes.ts
+    --           subject.routes.ts
+    --
+    --------utils
+    --       access.log
+    --       app.ts
+    --       authConfig.ts
+    --       logger.ts
+    --
+    --------__tests__
+        --   department.test.ts
+        --
+        --------config
+                database.ts
+                

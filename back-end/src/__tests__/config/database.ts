@@ -1,12 +1,12 @@
 import mongoose from "mongoose";
 
 const {
-    MONGO_CONNECTION_STRING,
+    MONGO_CONNECTION_STRING_CLOUD,
 } = process.env;
 
 
 export const connect = async () => {
-    await mongoose.connect(MONGO_CONNECTION_STRING ?? "", {
+    await mongoose.connect(MONGO_CONNECTION_STRING_CLOUD ?? "", {
         dbName: "test_database",
         useNewUrlParser: true,
         useUnifiedTopology: true,

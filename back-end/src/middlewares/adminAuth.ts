@@ -8,5 +8,6 @@ export const adminAuth : RequestHandler = async (req, res, next) => {
         return res.status(401).json({
             status: 401, success: false, message: "Unauthorized - you are not admin",
         })
-    next();
+    else
+        next();
 }
