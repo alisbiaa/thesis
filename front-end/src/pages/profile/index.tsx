@@ -27,7 +27,7 @@ const Profile = () => {
     return (
         <div>
             <Spin spinning={false}>
-                <Header path={["Index", name]}/>
+                <Header path={["Profile", name]}/>
                 <div className="site-layout-background" style={{padding: 24, minHeight: 360}}>
                     <Row gutter={[16, 16]}>
                         <Col span={24}>

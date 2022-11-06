@@ -4,13 +4,7 @@ import {InfoCircleOutlined, UploadOutlined} from "@ant-design/icons";
 
 const { Option } = Select;
 
-const normFile = (e: any) => {
-    console.log('Upload event:', e);
-    if (Array.isArray(e)) {
-        return e;
-    }
-    return e?.fileList;
-};
+
 
 const TODO = () => {
     return (
@@ -37,19 +31,7 @@ const TODO = () => {
             </Form.Item>
 
 
-            <Form.Item
-                name="upload"
-                label="Upload"
-                valuePropName="fileList"
-                getValueFromEvent={normFile}
-                tooltip={{title: 'Max size 3mb', icon: <InfoCircleOutlined/>}}
-                extra="Max size 3mb"
-                requiredMark={"optional"}
-            >
-                <Upload name="logo" action="/upload.do" listType="picture">
-                    <Button icon={<UploadOutlined/>}>Click to upload</Button>
-                </Upload>
-            </Form.Item>
+
         </>
     );
 };

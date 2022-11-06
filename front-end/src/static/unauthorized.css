@@ -93,7 +93,7 @@ svg.key {
 
 /* define the keyframe animations
 - hoverghost to have the ghost move right, left and then back to its default position
-- showKey to introduce into view the key (and keyhole) svg
+- showKey to introduce into question the key (and keyhole) svg
 - showText, showNewText, showFinalText to show the different strings (the implementation is quite quirky and primed for optimization)
  */
 @keyframes hoverGhost {

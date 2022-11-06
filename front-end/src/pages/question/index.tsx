@@ -5,9 +5,7 @@ import Header from "../../component/Header";
 import Content from "./Content";
 import AddResponse from "./AddResponse";
 
-const View = () => {
-
-
+const Index = () => {
     return (
         <>
             <Header path={["Question"]}/>
@@ -27,4 +25,4 @@ const View = () => {
     );
 };
 
-export default View;
+export default Index;

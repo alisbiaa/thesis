@@ -48,14 +48,13 @@ const Users = () => {
                 <Col className="gutter-row" span={6}>
                     <PageHeader
                         className="site-page-header"
-                        title="Student"
+                        title="Guest"
                     />
                     {
                         filtered.filter(user => user.role === "RO").map(user =>
                             <User key={user.email} user={user}/>
                         )
                     }
-
                 </Col>
                 <Col className="gutter-row" span={6}>
                     <PageHeader

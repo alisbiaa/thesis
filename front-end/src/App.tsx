@@ -1,24 +1,22 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {Layout, Menu} from 'antd';
 import SideBar from "./component/SideBar";
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
-import Department from "./pages/department";
 import Login from "./pages/Login";
 import {useIsAuthenticated, useMsal} from "@azure/msal-react";
-import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import Profile from "./pages/profile";
-import Ask from "./pages/ask";
-import Search from "./pages/search/Search";
-import View from "./pages/view";
-import Users from "./pages/users";
+import {IUser} from "./static/interfaces";
+import {get_user} from "./api/user.api";
+import {get_routes} from "./config/routes";
 
 const { Header, Content, Footer } = Layout;
+
+
 
 const App: React.FC = () => {
     const navigate = useNavigate();
     const isAuthenticated = useIsAuthenticated();
-    const { instance } = useMsal();
+    const { instance, accounts } = useMsal();
     const handleLogout= ()=> {
         instance.logoutPopup({
             postLogoutRedirectUri: "/",
@@ -26,9 +24,28 @@ const App: React.FC = () => {
         }).catch((error) => console.log(error));
         navigate("/login");
     }
+
+    const account = accounts[0];
+    const email = account.username ?? "";
+
+    const [user, setUser] = useState<IUser | null>(null);
+
+    useEffect(() => {
+        const fetchData = async ()=> {
+            const {message, success, data, error, status} = await get_user(email);
+            if (success)
+                setUser(data);
+            else
+                setUser(null);
+        }
+        fetchData();
+    }, [email]);
+
+    const routes = get_routes(user?.role ?? "RO");
+
     return (
         isAuthenticated ?
-            <Layout style={{minHeight: '100vh'}}>
+            <Layout hasSider>
                 <SideBar/>
                 <Layout className="site-layout">
                     <Header className="site-layout-background" style={{padding: 0}}>
@@ -46,26 +63,28 @@ const App: React.FC = () => {
                             </Menu.Item>
                         </Menu>
                     </Header>
-                    <Content style={{padding: '0 16px', overflow: 'initial' ,backgroundColor:"white"}} className="scrollable-container">
+                    <Content style={{padding: '0 16px', backgroundColor: "white"}}>
                         <Routes>
-                            <Route path={"/"} element={<Home/>}/>
-                            <Route path={"/profile"} element={<Profile/>}/>
-                            <Route path={"/ask"} element={<Ask/>}/>
-                            <Route path={"/search"} element={<Search/>}/>
-                            <Route path={"/view/:id"} element={<View/>}/>
-                            <Route path={"/department/:id"} element={<Department/>}/>
-                            {/* Admin routes */}
-                            <Route path={"/admin/users"} element={<Users/>}/>
-
-                            <Route path={"/404"} element={<NotFound/>}/>
+                            {
+                                routes.map((route, index) =>
+                                    <Route
+                                        key={index}
+                                        path={route.path}
+                                        element={React.createElement(route.component)}
+                                    />
+                                )
+                            }
+                            <Route path={"*"} element={<NotFound/>}/>
                         </Routes>
                     </Content>
                     <Footer style={{textAlign: 'center'}}>Thesis ELTE ©2022 Created by Ali Sbiaa Zayen</Footer>
                 </Layout>
             </Layout>
+
+
             :
             <Routes>
-                <Route path={"/login"} element={ <Login/>}/>
+                <Route path={"/login"} element={<Login/>}/>
                 <Route path={"*"} element={<Navigate to={"/login"}/>}/>
             </Routes>
 

@@ -48,6 +48,8 @@ export interface IQuestion {
 
     answers: IAnswer[];
 
+    attachment?: string;
+
     createdAt: string;
 }
 

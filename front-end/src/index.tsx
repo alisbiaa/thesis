@@ -7,6 +7,7 @@ import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "./config/authConfig";
 import 'antd/dist/antd.min.css';
+import "./static/test.css";
 
 export const msalInstance = new PublicClientApplication(msalConfig);
 

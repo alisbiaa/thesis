@@ -1,13 +1,15 @@
 import React, { useState} from 'react';
 import Header from "../../component/Header";
+import {getDownloadURL, getStorage, ref, uploadBytes} from "firebase/storage";
 
-import {Button, Form, Input} from 'antd';
+import {Button, Form, Input, notification, Spin} from 'antd';
 import {useMsal} from "@azure/msal-react";
 import Departments from "./Departments";
 import Subjects from "./Subjects";
-import TODO from "./TODO";
 import {question_create} from "../../api/question.api";
-import {openNotification} from "../../static/functions";
+import {useNavigate} from "react-router-dom";
+import Attachment from "./Attachment";
+import firebaseApp from "../../config/firebase";
 
 const { TextArea } = Input;
 
@@ -16,32 +18,78 @@ const formItemLayout = {
     wrapperCol: { span: 14 },
 };
 
-const Ask = () => {
+const storage = getStorage(firebaseApp);
 
+const Ask = () => {
+    const navigate = useNavigate();
     const { accounts } = useMsal();
     const account = accounts[0];
     const email = account.username ?? "";
 
     const [department_id, setDepartmentId] = useState<string|null>(null);
 
+    const [file, setFile] = useState<any>('');
+
+    const [loading, setLoading] = useState<boolean>(false);
+
     const onFinish = async (values: any) => {
-        // console.log('Received values of form: ', values);
-        const {message, status, success, data, error} = await question_create(values);
-        openNotification({
-            message: "Posting a question",
-            description: message + JSON.stringify(error),
-            type: success ? "success" : "error",
-        })
+
+        // TODO firebase
+        if (file) {
+            setLoading(true);
+            const storageRef = ref(storage, `/${email}/${file.name}`);
+            const newMetadata = {
+                contentType: file.type ?? "UNKNOWN",
+                customMetadata : {
+                    user : email,
+                }
+            };
+            // uploadFile(storageRef, file, newMetadata);
+            await uploadBytes(storageRef,file,newMetadata)
+                .then(result=> {
+                    getDownloadURL(result.ref).then(url => {
+                        setLoading(false);
+                        question_create({...values, attachment: url})
+                            .then(({message, status, success, data, error}) => {
+                                notification.open({
+                                    message: "Posting a question",
+                                    description: message + `${error ? JSON.stringify(error) : ""}`,
+                                    type: success ? "success" : "error",
+                                    onClose: () => navigate(`/question/${data._id}`),
+                                });
+                            });
+                    });
+                })
+                .catch(err => {
+                    setLoading(false);
+                    notification.open({
+                        message : "Attachment",
+                        description :  err,
+                        type :  "error",
+                    });
+                })
+        }
+        else {
+            const {message, status, success, data, error} = await question_create(values);
+
+            notification.open({
+                message: "Posting a question",
+                description: message + JSON.stringify(error),
+                type: success ? "success" : "error",
+                onClose: () => navigate(`/question/${data._id}`),
+            });
+        }
+
+
     };
 
     return (
-        <div>
+        <Spin spinning={loading}>
             <Header path={["Ask a question"]}/>
             <Form
                 name="validate_other"
                 {...formItemLayout}
                 onFinish={onFinish}
-
             >
                 <Form.Item label="Username" name={"user"} initialValue={email}>
                     <span className="ant-form-text">{email}</span>
@@ -59,7 +107,9 @@ const Ask = () => {
                     <TextArea rows={4}/>
                 </Form.Item>
 
-                <TODO/>
+                {/*<TODO/>*/}
+
+                <Attachment setFile={setFile}/>
 
                 <Form.Item wrapperCol={{span: 12, offset: 6}}>
                     <Button type="primary" htmlType="submit">
@@ -67,7 +117,7 @@ const Ask = () => {
                     </Button>
                 </Form.Item>
             </Form>
-        </div>
+        </Spin>
     );
 };
 

@@ -1,22 +1,14 @@
-import React, {CSSProperties, useEffect, useState} from 'react';
-import {Layout, Menu, MenuProps,Divider} from "antd";
-import {
-    UserOutlined,
-    DatabaseOutlined,
-    SearchOutlined, QuestionCircleOutlined, UsergroupAddOutlined
-} from "@ant-design/icons";
+import React, { useEffect, useState} from 'react';
+import {Layout, Menu} from "antd";
 import {department_get_all} from "../api/department.api";
-import {IDepartment} from "../static/interfaces";
+import {IDepartment, IUser} from "../static/interfaces";
 import { useNavigate } from "react-router-dom";
+import {get_user} from "../api/user.api";
+import {get_nav_routes} from "../config/routes";
+import {useMsal} from "@azure/msal-react";
+import {DatabaseOutlined} from "@ant-design/icons";
 
-const {Sider } = Layout;
-
-type MenuItem = Required<MenuProps>['items'][number];
-
-const style : CSSProperties = {
-    color: "white", border:"white"
-
-}
+const {Sider} = Layout;
 
 const SideBar = () => {
     let navigate = useNavigate();
@@ -33,12 +25,39 @@ const SideBar = () => {
         fetchData();
     }, []);
 
+    const { accounts } = useMsal();
+    const account = accounts[0];
+    const email = account.username ?? "";
+
+    const [user, setUser] = useState<IUser | null>(null);
+
+    useEffect(() => {
+        const fetchData = async ()=> {
+            const {message, success, data, error, status} = await get_user(email);
+            if (success)
+                setUser(data);
+            else
+                setUser(null);
+        }
+        fetchData();
+    }, [email]);
+
+    const nav_routes = get_nav_routes(user?.role ?? "RO");
+
 
 
     const [collapsed, setCollapsed] = useState(false);
     return (
         <Sider
-               theme={"dark"} collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)}>
+            style={{
+                overflow: 'auto',
+                height: '100vh',
+                left: 0,
+                top: 0,
+                bottom: 0,
+                padding:"5px"
+            }}
+            theme={"dark"} collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)} >
             <img
                 loading={"lazy"}
                 src={collapsed ? "/elte-logo-sm.svg" : "/elte-logo.svg"}
@@ -46,9 +65,6 @@ const SideBar = () => {
                 style={{cursor: "pointer"}}
                 onClick={() => navigate("/")}
             />
-
-
-            <Divider style={{ borderWidth: 2, borderColor: '#ffffff' }} />
 
 
             <Menu theme={"dark"} mode="vertical">
@@ -62,47 +78,19 @@ const SideBar = () => {
                         </Menu.Item>
                     )}
                 </Menu.SubMenu>
-                <Menu.Item
-                    key={2}
-                    icon={<SearchOutlined/>}
-                    onClick={() => navigate("/search")}
-                >
-                    Search
-                </Menu.Item>
-                <Divider orientation="left" plain style={style}>
-                    Student
-                </Divider>
-                <Menu.Item
-                    key={1}
-                    icon={<UserOutlined/>}
-                    onClick={() => navigate("/profile")}
-                >
-                    Profile
-                </Menu.Item>
+                {
+                    nav_routes.map( (r,i) =>
 
-                <Menu.Item
-                    icon={<QuestionCircleOutlined/>}
-                    onClick={() => navigate("/ask")}
-                    key={4}
-                >
-                    Ask
-                </Menu.Item>
-                <Divider orientation="left" plain style={style}>
-                    Teacher
-                </Divider>
-                <Divider orientation="left" plain style={style}>
-                    Admin
-                </Divider>
-                <Menu.Item
-                    icon={<UsergroupAddOutlined/>}
-                    onClick={() => navigate("/admin/users")}
-                    key={5}
-                >
-                    Users
-                </Menu.Item>
+                        <Menu.Item
+                            key={i+3}
+                            icon={r.icon ? React.createElement(r.icon) : null  }
+                            onClick={() => navigate(r.path)}
+                        >
+                            {r.label}
+                        </Menu.Item>
+                    )
+                }
             </Menu>
-
-
         </Sider>
     );
 };

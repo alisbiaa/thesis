@@ -3,9 +3,9 @@ import {useParams} from "react-router-dom";
 import {IDepartment, IResponse, ISubject} from "../../static/interfaces";
 import {department_get_one} from "../../api/department.api";
 import {Breadcrumb, Col, Collapse, Divider, Row, Typography} from "antd";
-import {subject_get_all_by_department} from "../../api/subject.api";
 import SubjectsList from "./SubjectsList";
 import TeachersList from "./TeachersList";
+import Highlights from "./Highlights";
 
 
 const Index = () => {
@@ -36,7 +36,7 @@ const Index = () => {
                     <Col className="gutter-row" span={8}>
                         <Divider orientation={"left"} orientationMargin={20}>Highlights</Divider>
                         <div>
-                            TODO
+                            <Highlights/>
                         </div>
                     </Col>
                     <Col className="gutter-row" span={8}>

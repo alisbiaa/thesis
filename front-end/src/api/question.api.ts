@@ -1,13 +1,14 @@
 import baseAPI from "../config/baseAPI";
 import {IQuestion} from "../static/interfaces";
 
-export const question_create = async ({department_id,subject_id,user,content} : IQuestion) => {
+export const question_create = async ({department_id,subject_id,user,content,attachment} : IQuestion) => {
     try {
         const {data} = await baseAPI.post(`/api/question/`, {
             user,
             department_id,
             subject_id,
-            content
+            content,
+            attachment
         });
         return data;
     } catch (e: any) {
@@ -15,9 +16,12 @@ export const question_create = async ({department_id,subject_id,user,content} : 
     }
 }
 
-export const question_get_all = async () => {
+export const question_get_all = async (query= {}) => {
     try {
-        const {data} = await baseAPI.get(`/api/question`);
+        const {data} = await baseAPI.get(`/api/question`,
+            {
+                params : query
+            });
         return data;
     } catch (e:any) {
         return e?.response?.data;

@@ -24,7 +24,7 @@ const Departments = ({setDepartmentId}:propType) => {
     return (
         <Form.Item
             name="department_id"
-            label="Subject"
+            label="Department"
             hasFeedback
             rules={[{required: true, message: 'Please select the department!'}]}
         >

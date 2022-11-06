@@ -10,7 +10,7 @@ const Home = () => {
     const [data, setData] = useState<any>(null);
 
     useEffect(() => {
-        if (account && inProgress === "none") {
+        if (account && inProgress === "none" && !data) {
             instance.acquireTokenSilent({
                 scopes: protectedResources.apiHello.scopes,
                 account: account
@@ -22,11 +22,14 @@ const Home = () => {
             });
         }
     }, [account, inProgress, instance]);
+
+
+
     return (
-        <div>
+        <>
             <Header path={["Home"]}/>
-            {data?.message}
-        </div>
+            {data?.message ?? ""}
+        </>
     );
 };
 
