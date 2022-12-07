@@ -6,7 +6,8 @@ export interface IUser {
     bio: string | null;
     department_id: string | null;
     role: "student" | "teacher" | "admin" | "RO";
-    banned : boolean
+    banned : boolean;
+
 }
 
 const schema = new Schema<IUser>({

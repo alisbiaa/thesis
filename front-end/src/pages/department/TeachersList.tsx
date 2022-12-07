@@ -29,8 +29,7 @@ const TeachersList = () => {
                         <List.Item key={teacher.email} >
                             <List.Item.Meta
                                 avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                                // TODO : change the href  ...
-                                title={<a href="https://ant.design">{teacher.name}</a>}
+                                title={<a href={`/profile/${teacher.email}`}  >{teacher.name}</a>}
                                 description={teacher.email}
                             >
                             </List.Item.Meta>

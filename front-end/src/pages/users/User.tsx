@@ -4,13 +4,14 @@ import {UserDeleteOutlined, UserOutlined, UserAddOutlined} from "@ant-design/ico
 import {IResponse, IUser} from "../../static/interfaces";
 import {useMsal} from "@azure/msal-react";
 import {ban_user, set_user_role, unban_user} from "../../api/action.api";
+import {useNavigate} from "react-router-dom";
 
 type propType = {
     user: IUser;
 }
 
 const User = ({user}: propType) => {
-
+    let navigate = useNavigate();
     const handleBan = async (ban :boolean) => {
         let response: IResponse;
         ban ?
@@ -60,9 +61,9 @@ const User = ({user}: propType) => {
             });
     }
 
-    const handleButtonClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        message.info('Click on left button.');
-        console.log('click left button', e);
+    const handleButtonClick = (id: string | null) => {
+        if(!id) return;
+        navigate(`/profile/${id}`);
     };
 
 
@@ -138,7 +139,7 @@ const User = ({user}: propType) => {
 
     return (
             <List.Item>
-                <Dropdown.Button onClick={handleButtonClick} overlay={menu}>
+                <Dropdown.Button onClick={()=> handleButtonClick(user.email)} overlay={menu}>
                     {
                         user.banned ?
                             <Typography.Text type={`danger`} >

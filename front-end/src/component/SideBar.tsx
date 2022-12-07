@@ -55,7 +55,8 @@ const SideBar = () => {
                 left: 0,
                 top: 0,
                 bottom: 0,
-                padding:"5px"
+                // margin: "5px"
+                // padding:"5px"
             }}
             theme={"dark"} collapsible collapsed={collapsed} onCollapse={value => setCollapsed(value)} >
             <img

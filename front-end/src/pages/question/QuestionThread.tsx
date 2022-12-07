@@ -13,6 +13,7 @@ import {timeParser} from "../../static/functions";
 import {update_question_hidden, update_question_important} from "../../api/action.api";
 import {useMsal} from "@azure/msal-react";
 import Report from "./Report";
+import {useNavigate} from "react-router-dom";
 
 type propType = {
     question: IQuestion | null;
@@ -22,6 +23,7 @@ type propType = {
 
 const QuestionThread = ({question, children } : propType) => {
 
+    let navigate = useNavigate();
     const { accounts } = useMsal();
     const account = accounts[0];
     const email = account.username ?? "";
@@ -66,6 +68,11 @@ const QuestionThread = ({question, children } : propType) => {
                 description: message + `status : ${status}`,
                 type : "error",
             });
+    };
+
+    const handleProfile = (id: string | null) => {
+        if(!id) return;
+        navigate(`/profile/${id}`);
     };
 
     const flags = () =>
@@ -153,7 +160,13 @@ const QuestionThread = ({question, children } : propType) => {
         <Comment
             actions={[actions()]}
             author={<User email={question?.user ?? ""}/>}
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="avatar"/>}
+            avatar={
+                <Avatar
+                    src="https://joeschmoe.io/api/v1/random"
+                    alt="avatar"
+                    onClick={() => handleProfile(question?.user ?? null)}
+                />
+            }
             content={
                 <>
                     {question?.solved ?
@@ -167,14 +180,14 @@ const QuestionThread = ({question, children } : propType) => {
                     }
                     {
                         question?.attachment ?
-                        <Button
-                            type="ghost"
-                            shape="round"
-                            size={"small"}
-                            style={{float: 'right'}}
-                        >
-                            <a href={question.attachment} download target="_blank"> <DownloadOutlined/> </a>
-                        </Button>
+                            <Button
+                                type="ghost"
+                                shape="round"
+                                size={"small"}
+                                style={{float: 'right'}}
+                            >
+                                <a href={question.attachment} download target="_blank"> <DownloadOutlined/> </a>
+                            </Button>
                             :
                             null
                     }

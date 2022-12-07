@@ -1,15 +1,15 @@
 import {Alert, Avatar, Comment, notification, Popconfirm, Space, Tooltip} from "antd";
 import {
     CheckCircleTwoTone,
-    ExclamationCircleOutlined,
 } from "@ant-design/icons";
 import React from "react";
 import User from "../../component/User";
 import {IAnswer} from "../../static/interfaces";
 import {timeParser} from "../../static/functions";
-import {update_answer_approved, update_question_important} from "../../api/action.api";
+import {update_answer_approved} from "../../api/action.api";
 import {useMsal} from "@azure/msal-react";
 import Report from "./Report";
+import {useNavigate} from "react-router-dom";
 
 type propType = {
     answer: IAnswer | null;
@@ -86,12 +86,23 @@ const CommentThread = ({answer} : propType) => {
 
         </Space>
 
+    let navigate = useNavigate();
+    const handleProfile = (id: string | null) => {
+        if(!id) return;
+        navigate(`/profile/${id}`);
+    };
 
     return (
         <Comment
             actions={[actions()]}
             author={<User email={answer?.user ?? ""}/>}
-            avatar={<Avatar src="https://joeschmoe.io/api/v1/random" alt="avatar"/>}
+            avatar={
+                <Avatar
+                    src="https://joeschmoe.io/api/v1/random"
+                    alt="avatar"
+                    onClick={() => handleProfile(answer?.user ?? null)}
+                />
+            }
             content={
                 answer?.approved ?
                     <Alert

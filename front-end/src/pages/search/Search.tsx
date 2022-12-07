@@ -11,13 +11,6 @@ import User from "../../component/User";
 import {CheckCircleOutlined, ExclamationCircleOutlined, InboxOutlined, LinkOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 
-type filterType = {
-    hidden: true | undefined ;
-    approved: true | undefined ;
-    important: true | undefined ;
-    subject_id: string | undefined ;
-}
-
 const Search = () => {
     const [questions, setQuestions] = useState<IQuestion[]>([]);
     const [subjects, setSubjects] = useState([]);
@@ -26,17 +19,11 @@ const Search = () => {
 
     const [pagination, setPagination] = useState<TablePaginationConfig>({
         current: 1,
-        pageSize: 10,
-        total : 0, // TODO : you should read it from server
+        pageSize: 5,
+        total : 0,
     });
 
-    // TODO
-    const [filters, setFilter] = useState<filterType>({
-        hidden: undefined,
-        approved: undefined,
-        important: undefined,
-        subject_id: undefined
-    });
+
 
 
     useEffect(() => {
@@ -125,6 +112,16 @@ const Search = () => {
                 {text : "Solved" , value: "solved"},
                 {text : "Important" , value: "important"}
             ],
+            onFilter: (value, record) => {
+                // record.address.indexOf(value) === 0
+                if(value == "archived")
+                    return record.hidden
+                if(value == "solved")
+                    return record.solved
+                if (value == "important")
+                    return record.important
+                return false
+            },
             width: '20%',
         },
     ];

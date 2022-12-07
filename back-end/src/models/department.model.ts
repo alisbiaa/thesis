@@ -1,6 +1,6 @@
-import {model, Schema} from "mongoose";
+import {model, Schema, Document} from "mongoose";
 
-export interface IDepartment {
+export interface IDepartment extends Document{
     name: string;
     description: string;
 }

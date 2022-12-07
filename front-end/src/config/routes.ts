@@ -15,6 +15,8 @@ import {
     UsergroupAddOutlined,
     ExclamationCircleOutlined
 } from "@ant-design/icons";
+import ProfileById from "../pages/profile/ProfileById";
+import Reports from "../pages/Reports";
 
 
 interface IRoute {
@@ -39,6 +41,7 @@ const isAuthorized  = (user_role: IRoute["auth"], route_role: IRoute["auth"]) : 
 };
 
 const routes: IRoute[] = [
+
     {
         path : '/',
         component: Home,
@@ -69,7 +72,7 @@ const routes: IRoute[] = [
     },
     {
         path : '/profile/:id',
-        component: Test,
+        component: ProfileById,
         auth : "student",
         sidebar : false,
         label : 'Profile',
@@ -101,7 +104,7 @@ const routes: IRoute[] = [
     },
     {
         path : '/admin/reports',
-        component: Test,
+        component: Reports,
         auth : "teacher",
         sidebar : true,
         label : 'Reports',

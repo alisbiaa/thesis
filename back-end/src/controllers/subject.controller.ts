@@ -112,11 +112,12 @@ export const get_all : RequestHandler = (req, res) => {
                 success: !!data.length,
                 message: data.length ? "All subjects!" : "Database empty",
             })
-        }).catch(error =>
-        res.status(500).send({
-            error, status: 500, success: false, message: "Server side error!",
         })
-    );
+        .catch(error =>
+            res.status(500).send({
+                error, status: 500, success: false, message: "Server side error!",
+            })
+        );
 }
 
 export const remove: RequestHandler = (req, res) => {

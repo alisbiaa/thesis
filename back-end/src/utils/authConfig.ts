@@ -36,7 +36,7 @@ export const options : any = {
     audience: config.credentials.clientID, // audience is this application
     validateIssuer: config.settings.validateIssuer,
     passReqToCallback: config.settings.passReqToCallback,
-    loggingLevel: config.settings.loggingLevel,
+    // loggingLevel: config.settings.loggingLevel,
     scope: config.protectedRoutes.hello.scopes
 };
 

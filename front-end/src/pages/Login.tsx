@@ -22,7 +22,8 @@ const Login = () => {
         instance.loginPopup(loginRequest).then((data) => {
             const username = data.account?.username;
             const name = data.account?.name;
-            // console.log(data.account);
+            console.log("HELLO");
+            console.log(data.account);
             login_create_api({email: username, name}).then(data => console.log(data));
             navigate("/")
         })

@@ -1,44 +1,28 @@
-import React, {useEffect, useState} from 'react';
-import {Badge, Button, Descriptions, notification, Spin, Typography} from 'antd';
-import {useMsal} from "@azure/msal-react";
+import React, {useState} from 'react';
+import {Badge, Button, Descriptions, Spin, Typography} from 'antd';
 import {get_user, update_user} from "../../api/user.api";
 import {IUser} from "../../static/interfaces";
 import {EditFilled} from "@ant-design/icons";
 import {openNotification} from "../../static/functions";
 const { Paragraph } = Typography;
 
-const Info = () => {
-    const { accounts } = useMsal();
-    const account = accounts[0];
-    const email = account.username ?? "";
-    const name = account.name ?? "";
+type propType = {
+    user: IUser | null;
+    editable : boolean;
+}
+const Info = ({user, editable} : propType) => {
 
-    const [user, setUser] = useState<IUser | null>(null);
+
     const [spin, setSpin] = useState<boolean>(false);
     const [bio, setBio] = useState<string|null>(null);
 
-    useEffect(() => {
-        const fetchData = async ()=> {
-            const {message, success, data, error, status} = await get_user(email);
-            if (success)
-                setUser(data);
-            else
-                setUser(null);
-
-        }
-        fetchData();
-    }, [email]);
+    const email: string | null = user?.email ?? null;
 
     const handleUpdate = () => {
         if(!bio) return;
         setSpin(true);
         const fetchData = async ()=> {
             const {message, success, data, error, status} = await update_user({email,bio});
-            if (success)
-                setUser(data);
-            else
-                setUser(null);
-            setSpin(false);
             setBio(null);
             openNotification(
                 {
@@ -48,6 +32,9 @@ const Info = () => {
                     type: success ? "success" : "error",
                 }
             )
+            if (success) {
+                window.location.reload();
+            }
         }
         fetchData();
     }
@@ -67,18 +54,23 @@ const Info = () => {
                     <Paragraph
                         copyable={true}
                     >
-                        {name}
+                        {user?.name}
                     </Paragraph>
                 </Descriptions.Item>
                 <Descriptions.Item label="Bio" span={3}>
                     <Paragraph
-                        editable={{
-                            tooltip: "Cannot edit",
-                            triggerType: ["text", "icon"],
-                            onChange: value => setBio(value),
-                        }}
+                        editable={
+                            editable ?
+                                {
+                                    tooltip: "Click to edit",
+                                    triggerType: ["text", "icon"],
+                                    onChange: value => setBio(value),
+                                }
+                                :
+                                false
+                        }
                     >
-                        { bio ?? user?.bio ?? "..." }
+                        {bio ?? user?.bio ?? "..."}
                     </Paragraph>
                 </Descriptions.Item>
                 <Descriptions.Item label="Role" span={3}>

@@ -1,22 +1,18 @@
 import React, {useEffect, useState} from 'react';
-import Header from "../../component/Header";
-import {useMsal} from "@azure/msal-react";
-import {Avatar, Badge, Col, Divider, Modal, Row, Spin, Typography} from "antd";
-import {UserOutlined} from "@ant-design/icons";
-import Info from "./Info";
+import {useParams} from "react-router-dom";
 import {IUser} from "../../static/interfaces";
 import {get_user} from "../../api/user.api";
-const { Title } = Typography;
+import {Avatar, Badge, Col, Divider, Row, Spin, Typography} from "antd";
+import Header from "../../component/Header";
+import {UserOutlined} from "@ant-design/icons";
+import Info from "./Info";
 
-const Profile = () => {
-    const { accounts } = useMsal();
-    const account = accounts[0];
-    const name = account.name ?? "";
-    const id = account.username ?? null;
+const { Title } = Typography;
+const ProfileById = () => {
+    const {id} = useParams();
 
     const [user, setUser] = useState<IUser | null>(null);
     const [spin, setSpin] = useState<boolean>(true);
-
     useEffect(() => {
         setUser(null);
         setSpin(true);
@@ -32,19 +28,7 @@ const Profile = () => {
         fetchData();
     }, [id]);
 
-
-    const info = () => {
-        Modal.info({
-            title: 'This is a notification message',
-            content: (
-                <div>
-                    <p>some messages...some messages...</p>
-                    <p>some messages...some messages...</p>
-                </div>
-            ),
-            onOk() {},
-        });
-    };
+    const name = user?.name ?? "";
 
     return (
         <div>
@@ -54,26 +38,25 @@ const Profile = () => {
                     <Row gutter={[16, 16]}>
                         <Col span={24}>
                             {/* TODO : add notifications items */}
-                            <span onClick={info} style={{cursor: "pointer"}}>
-                               <Badge count={5}>
+                            {/* onClick = {info} */}
+                            <span style={{cursor: "pointer"}}>
                                     <Avatar
                                         icon={<UserOutlined/>}
                                         shape="square"
                                         size={100}
                                         src="https://joeschmoe.io/api/v1/random"
                                     />
-                                </Badge>
                             </span>
                             <Title style={{display: "inline", verticalAlign: "middle"}}> {name} </Title>
                         </Col>
                     </Row>
                     <Divider/>
-                    <Info user={user} editable={true}/>
-                {/*    TODO : notifications */}
+                    <Info user={user} editable={false}/>
+                    {/*    TODO : notifications */}
                 </div>
             </Spin>
         </div>
     );
 };
 
-export default Profile;
+export default ProfileById;

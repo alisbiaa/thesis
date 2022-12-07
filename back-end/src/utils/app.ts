@@ -60,6 +60,7 @@ const bearerStrategy = new BearerStrategy(options, (token:any, done:any) => {
         done(null, {}, token);
     }
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 passport.use(bearerStrategy);
