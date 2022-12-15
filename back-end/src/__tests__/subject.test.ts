@@ -7,7 +7,7 @@ import {subject_model} from "../models/subject.model";
 import {mock_department, mock_subject} from "./config/fake_data";
 
 describe('Subject',  () => {
-    jest.setTimeout(30000);
+    jest.setTimeout(20000);
 
     beforeAll(async () => await connect());
     afterEach(async () => await clear());
@@ -24,7 +24,7 @@ describe('Subject',  () => {
         describe('given the department exist' , () => {
             it('should return 200', async () => {
                 // await user_model.create(mock_user);
-                const temp_depart = await department_model.create(mock_department);
+                // const temp_depart = await department_model.create(mock_department);
                 const temp_subject = await subject_model.create(mock_subject);
                 const {statusCode} = await supertest(app).get(`/api/subject/get_one/${temp_subject._id}`);
                 expect(statusCode).toBe(200);
@@ -59,9 +59,10 @@ describe('Subject',  () => {
 
         describe('given the database is NOT empty', () => {
             it('should return 200', async () => {
-                await department_model.create(mock_department);
-                await subject_model.create(mock_subject);
-                const {statusCode} = await supertest(app).get(`/api/subject/get_all/${mock_subject.department_id}`);
+                const tmp_depart = await department_model.create(mock_department).catch(e => console.log(e));
+
+                const tmp_subject = await subject_model.create(mock_subject);
+                const {statusCode} = await supertest(app).get(`/api/subject/get_all/${tmp_depart?._id}`);
                 expect(statusCode).toBe(200);
             });
         })

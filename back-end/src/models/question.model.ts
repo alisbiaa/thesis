@@ -1,7 +1,7 @@
-import {model, Schema} from "mongoose";
+import {model, Schema, Document} from "mongoose";
 import {IAnswer,answer_schema} from "./answer.model";
 
-export interface IQuestion {
+export interface IQuestion extends Document{
     content: string;
 
     solved: boolean;
@@ -35,7 +35,7 @@ const schema = new Schema<IQuestion>({
         default: []
     }
 
-}, {timestamps: true, autoIndex: true});
+});
 
 export const question_model = model<IQuestion>("question", schema);
 

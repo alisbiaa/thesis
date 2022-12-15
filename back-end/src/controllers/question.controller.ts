@@ -82,10 +82,12 @@ export const get_one : RequestHandler = (req, res) => {
                 message: data ? "Question found!" : "Question doesn't exist."
             })
         })
-        .catch(error =>
-            res.status(500).send({
-                error, status: 500, success: false, message: "Server side error!",
-            })
+        .catch(error => {
+                console.log(error);
+                res.status(500).send({
+                    error, status: 500, success: false, message: "Server side error!",
+                })
+            }
         );
 
 }

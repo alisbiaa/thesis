@@ -26,7 +26,6 @@ export const create: RequestHandler = (req, res) => {
                     status: 404, success: false, message: "Question not found!"
                 });
             }
-
         })
         .catch(error =>
             res.status(500).send({

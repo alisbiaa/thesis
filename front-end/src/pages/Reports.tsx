@@ -1,15 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Header from "../component/Header";
 import {Space, Table, TablePaginationConfig} from "antd";
 import {ColumnsType} from "antd/es/table";
 import {IQuestion} from "../static/interfaces";
 import {LinkOutlined} from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
+import {subject_get_all} from "../api/subject.api";
 
 const Reports = () => {
 
     let navigate = useNavigate();
-    const [loading, setLoading] = useState<boolean>(true);
+    const [loading, setLoading] = useState<boolean>(false);
     const [pagination, setPagination] = useState<TablePaginationConfig>({
         current: 1,
         pageSize: 5,
@@ -17,6 +18,19 @@ const Reports = () => {
     });
 
     const [reports, setReports] = useState([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            const {data, message, success} = await subject_get_all();
+            if(success)
+                setReports(data);
+            else
+                setReports([]);
+        }
+        fetchData().finally(async () => {
+            setLoading(false);
+        });
+    }, []);
 
     const columns: ColumnsType<IQuestion> = [];
 

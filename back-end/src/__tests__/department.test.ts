@@ -6,7 +6,7 @@ import {department_model} from "../models/department.model";
 import {mock_department} from "./config/fake_data";
 
 describe('Department',  () =>{
-    jest.setTimeout(30000);
+    jest.setTimeout(2000);
 
     beforeAll(async () => await connect());
     afterEach(async () => await clear());

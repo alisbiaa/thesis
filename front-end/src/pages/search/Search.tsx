@@ -24,8 +24,6 @@ const Search = () => {
     });
 
 
-
-
     useEffect(() => {
         const fetchData = async () => {
             const {data, message, success} = await subject_get_all();

@@ -62,3 +62,10 @@ export interface IUser {
     role: "student" | "teacher" | "admin" | "RO";
     banned : boolean
 }
+
+export interface IReport {
+    reporter : string; // email
+    reported : string; // email
+    content: string;
+    link: string;
+}
