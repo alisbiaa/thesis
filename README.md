@@ -45,7 +45,7 @@ and set up the environment variable `MONGO_CONNECTION_STRING_CLOUD` for the `Bac
 To start the application as a developer execute the following commands:
 > **Front-end** :
 >```bash 
-> cd <folder_location>/thesis/front-end
+> cd <folder_location>/thesis/frontend
 > npm install
 > npm run start 
 >```
@@ -53,7 +53,7 @@ To start the application as a developer execute the following commands:
 > 
 >**Back-end** :
 >```bash 
-> cd <folder_location>/thesis/back-end
+> cd <folder_location>/thesis/backend
 > npm install
 > npm run dev
 >```
@@ -61,8 +61,8 @@ To start the application as a developer execute the following commands:
 >[http://localhost:5000](http://localhost:3000)
 
 
-# Front-end [:link:](/front-end)
+# Front-end [:link:](/frontend)
 
-# Back-end [:link:](/back-end)
+# Back-end [:link:](/backend)
 
 # Database

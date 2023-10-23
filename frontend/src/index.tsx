@@ -8,6 +8,7 @@ import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "./config/authConfig";
 import 'antd/dist/antd.min.css';
 import "./static/test.css";
+import AppHeader from "./component/AppHeader";
 
 export const msalInstance = new PublicClientApplication(msalConfig);
 
@@ -15,6 +16,7 @@ ReactDOM.render(
     <React.StrictMode>
         <BrowserRouter>
             <MsalProvider instance={msalInstance}>
+                <AppHeader />
                 <App/>
             </MsalProvider>
         </BrowserRouter>

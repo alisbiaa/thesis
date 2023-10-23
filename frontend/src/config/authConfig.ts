@@ -12,6 +12,9 @@ const {
     REACT_APP_BACKEND_ENDPOINT
 } = process.env;
 
+console.log(REACT_APP_CLIENT_ID);
+
+
 /**
  * Configuration object to be passed to MSAL instance on creation.
  * For a full list of MSAL.js configuration parameters, visit:

@@ -12,8 +12,6 @@ import NavBar from "./component/NavBar";
 
 const { Content, Footer } = Layout;
 
-
-
 const App: React.FC = () => {
     const isAuthenticated = useIsAuthenticated();
     const { accounts } = useMsal();

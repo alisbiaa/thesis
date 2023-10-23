@@ -41,7 +41,7 @@ const corsOptions : CorsOptions = {
     credentials: true,
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Security
 if (NODE_ENV === 'production') {
@@ -50,31 +50,36 @@ if (NODE_ENV === 'production') {
 
 // Logger
 if (NODE_ENV === 'development') {
-    app.use(morgan(handler,{ stream: accessLogStream }));
+    // app.use(morgan(handler,{ stream: accessLogStream }));
+    app.use(morgan('dev'));
 }
 
 // console.log(options);
 // sso
-const bearerStrategy = new BearerStrategy(options, (token:any, done:any) => {
-        // Send user info using the second argument
-        done(null, {}, token);
-    }
-);
-
-app.use(passport.initialize());
-app.use(passport.session());
-passport.use(bearerStrategy);
-
-passport.serializeUser(function(user:any, done) {
-    done(null, user);
-});
-
-passport.deserializeUser(function(user:any, done) {
-    done(null, user);
-});
+// const bearerStrategy = new BearerStrategy(options, (token:any, done:any) => {
+//         // Send user info using the second argument
+//         done(null, {}, token);
+//     }
+// );
+//
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passport.use(bearerStrategy);
+//
+// passport.serializeUser(function(user:any, done) {
+//     done(null, user);
+// });
+//
+// passport.deserializeUser(function(user:any, done) {
+//     done(null, user);
+// });
 
 // simple route
-app.get("/", passport.authenticate('oauth-bearer', {session: true}), (req, res) => {
+// app.get("/", passport.authenticate('oauth-bearer', {session: true}), (req, res) => {
+//     res.json({message: "Welcome to stackoverflow uni."});
+// });
+
+app.get("/", (req, res) => {
     res.json({message: "Welcome to stackoverflow uni."});
 });
 

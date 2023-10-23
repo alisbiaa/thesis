@@ -5,11 +5,11 @@ dotenv.config();
 
 const {
     NODE_PORT,
-    MONGO_CONNECTION_STRING_CLOUD
+    MONGO_CONNECTION_STRING
 } = process.env;
 
 mongoose
-    .connect(MONGO_CONNECTION_STRING_CLOUD ?? "", {
+    .connect(MONGO_CONNECTION_STRING ?? "", {
         dbName: "thesis",
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -24,6 +24,16 @@ mongoose
         console.error("Cannot connect to the database!", err);
         // process.exit();
     });
+
+app.get('/health', (req, res) => {
+    // Check connection state
+    if (mongoose.connection.readyState === 1) {
+        res.status(200).send("HEALTHY");
+    } else {
+        res.status(500).send("NOT HEALTHY");
+    }
+});
+
 
 // set port, listen for requests
 app.listen(NODE_PORT, () => {
