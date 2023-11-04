@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: frontend-dev-deployment
+  labels:
+    app: frontend
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      env: dev
+  template:
+    metadata:
+      labels:
+        app: frontend
+        env: dev
+    spec:
+      containers:
+        - name: frontend-dev-pod
+          image: thesis-frontend-dev
+          ports:
+            - containerPort: 3000
+              name: http-front-dev
+          imagePullPolicy: IfNotPresent
+
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-dev-service
+  namespace: dev
+spec:
+  selector:
+    app: frontend
+    env: dev
+  ports:
+    - port: 80
+      targetPort: http-front-dev
+      protocol: TCP
+      name: front-svc-port
+  type: ClusterIP

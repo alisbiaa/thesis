@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: dev
+  name: backend-dev-deployment
+  labels:
+    app: backend
+    env: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+      env: dev
+  template:
+    metadata:
+      name: backend
+      labels:
+        app: backend
+        env: dev
+    spec:
+      containers:
+        - name: backend
+          image: thesis-backend-dev
+          ports:
+            - containerPort: 5000
+              name: http-back-dev
+          envFrom:
+            - configMapRef:
+                name: backend-dev-configmap
+          imagePullPolicy: IfNotPresent
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: http-back-dev
+            initialDelaySeconds: 3 # tells the kubelet that it should wait 3 seconds before performing the first probe
+            periodSeconds: 3 # specifies that the kubelet should perform a liveness probe every 3 seconds
+            failureThreshold: 2
+#
+#          readinessProbe:
+#            httpGet:
+#              path: /
+#              port: http-back-dev
+#            initialDelaySeconds: 2
+#            periodSeconds: 2
+      restartPolicy: Always
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-dev-service
+  namespace: dev
+spec:
+  selector:
+    app: backend
+    env: dev
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: http-back-dev
+  type: NodePort # Change to 'NodePort' if you're using a local Kubernetes cluster

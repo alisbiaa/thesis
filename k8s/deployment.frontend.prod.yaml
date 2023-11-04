@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: prod
+  name: frontend-prod-deployment
+  labels:
+    app: frontend
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: frontend
+        env: prod
+    spec:
+      containers:
+        - name: frontend-prod-container
+          image: thesis-frontend-prod
+          ports:
+            - containerPort: 80
+              name: http-frontend-prod
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-prod-service
+  namespace: prod
+spec:
+  selector:
+    app: frontend
+    env: prod
+  ports:
+    - protocol: TCP
+      port: 80 # Replace with the desired external port for your frontend
+      targetPort: http-frontend-prod
+  type: NodePort # Change to 'NodePort' if you're using a local Kubernetes cluster
